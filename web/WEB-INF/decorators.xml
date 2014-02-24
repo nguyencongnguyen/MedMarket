@@ -1,0 +1,9 @@
+<decorators defaultdir="/template">
+    <decorator name="home" page="main.jsp">
+        <pattern>/home/*</pattern>
+    </decorator>
+    <decorator name="deail" page="detail.jsp">
+        <pattern>/*.*</pattern>
+    </decorator>
+    
+</decorators>

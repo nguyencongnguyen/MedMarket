@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ROOT" default="build" basedir=".">
+	<description>
+		Build script for the sales manager catalog
+   </description>
+
+
+
+
+	<property name="appname" value="ROOT" />
+	<property name="lib.dir" value="./web/WEB-INF/lib" />
+	<property name="dist.dir" value="dist" />
+	<property name="src.dir" value="src" />
+	<property name="webcontent.dir" value="web" />
+	<property name="war.dir" value="${webcontent.dir}" />
+	<property name="war.file" value="${dist.dir}/ROOT.war" />
+	<property name="webinf.dir" value="./web/WEB-INF" />
+	<property name="class.dir" value="./bin" />
+
+	<path id="master-classpath" description="Master CLASSPATH for this script">
+			<fileset dir="${lib.dir}">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="C:\Data\Work\programs\apache-tomcat-6.0.35\lib\">
+				<include name="*.jar" />
+			</fileset>
+		
+			<pathelement location="${class.dir}/" />
+		</path>
+
+	<target name="init" description="Setup for build script">
+		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${class.dir}" />
+	</target>
+	
+	<target name="del" description="Setup for build script">
+		<delete>
+			<fileset dir="${dist.dir}" />
+		</delete>
+		<delete>
+			<fileset dir="${class.dir}" />
+		</delete>
+	</target>
+
+	<target name="compile" description="Compiles .java files to WAR directory" depends="init">
+		<javac srcdir="${src.dir}" destdir="${class.dir}" debug="true" failonerror="true" classpathref="master-classpath" encoding="utf-8" />
+	</target>
+
+	<target name="war" depends="compile">
+		<war destfile="${war.file}" webxml="${webcontent.dir}/WEB-INF/web.xml">
+			<fileset dir="${war.dir}">
+				<include name="**/*.*" />
+				<exclude name="**/web.xml" />
+			</fileset>
+		</war>
+		<copy file="${war.file}" tofile="../${war.file}" overwrite="true" />
+	</target>
+
+
+	<target name="build" depends="war">
+
+	</target>
+
+</project>
