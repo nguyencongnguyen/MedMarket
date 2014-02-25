@@ -7,15 +7,16 @@ public class Product extends Entity {
 	private String description;
 	private long price;
 	private long catId;
-	private long accountId;
+	private String username;
 	private long provinceId;
-	public long getAccountId() {
-		return accountId;
-	}
-	public void setAccountId(long accountId) {
-		this.accountId = accountId;
-	}
-	public String getName() {
+
+	public String getUsername() {
+        return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    public String getName() {
 		return name;
 	}
 	public void setName(String name) {
