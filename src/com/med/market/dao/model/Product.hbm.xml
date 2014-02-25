@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.ohs.dal.model.Product" table="product">
-        <id name="productId" type="string">
+        <id name="productId" type="java.lang.Long">
             <column name="PRODUCT_ID" length="20" />
             <generator class="identity" />
         </id>
@@ -13,8 +13,14 @@
         <property name="name" type="string">
             <column name="NAME" length="45" not-null="true" />
         </property>
+        <property name="price" type="java.lang.Long">
+            <column name="PRICE" not-null="true" />
+        </property>
         <many-to-one name="catId" class="com.ohs.dal.model.Category" lazy="false" fetch="select">
             <column name="CAT_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="provinceId" class="com.ohs.dal.model.Province" lazy="false" fetch="select">
+            <column name="PROVINCE_ID" not-null="true" />
         </many-to-one>
         <property name="createdDate" type="timestamp">
             <column name="CREATED_DATE" length="19" not-null="true" />

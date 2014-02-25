@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.ohs.dal.model.Category" table="category">
-        <id name="catId" type="string">
+        <id name="catId" type="java.lang.Long">
             <column name="CAT_ID" length="20" />
             <generator class="identity" />
         </id>

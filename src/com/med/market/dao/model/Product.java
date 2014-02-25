@@ -5,8 +5,10 @@ public class Product extends Entity {
 	private long productId;
 	private String name;
 	private String description;
+	private long price;
 	private long catId;
 	private long accountId;
+	private long provinceId;
 	public long getAccountId() {
 		return accountId;
 	}
@@ -37,6 +39,17 @@ public class Product extends Entity {
 	public void setCatId(long catId) {
 		this.catId = catId;
 	}
-	
-	
+    public long getPrice() {
+        return price;
+    }
+    public void setPrice(long price) {
+        this.price = price;
+    }
+    public long getProvinceId() {
+        return provinceId;
+    }
+    public void setProvinceId(long provinceId) {
+        this.provinceId = provinceId;
+    }
+
 }
