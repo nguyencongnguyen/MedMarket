@@ -5,6 +5,7 @@ public class Product extends Entity {
 	private long productId;
 	private String name;
 	private String description;
+	private String contactPhone;
 	private long price;
 	private long catId;
 	private String username;
@@ -51,6 +52,12 @@ public class Product extends Entity {
     }
     public void setProvinceId(long provinceId) {
         this.provinceId = provinceId;
+    }
+    public String getContactPhone() {
+        return contactPhone;
+    }
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone;
     }
 
 }

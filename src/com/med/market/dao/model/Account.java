@@ -4,6 +4,7 @@ public class Account extends Entity {
     private String username;
     private String name;
     private String password;
+    private String phone;
 
     public String getUsername() {
         return username;
@@ -27,6 +28,14 @@ public class Account extends Entity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
 }

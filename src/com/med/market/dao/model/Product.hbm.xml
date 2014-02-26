@@ -16,6 +16,9 @@
         <property name="price" type="java.lang.Long">
             <column name="PRICE" not-null="true" />
         </property>
+        <property name="contactPhone" type="string">
+            <column name="CONTACT_PHONE" length="15"  not-null="true" />
+        </property>
         <many-to-one name="catId" class="com.ohs.dal.model.Category" lazy="false" fetch="select">
             <column name="CAT_ID" not-null="true" />
         </many-to-one>

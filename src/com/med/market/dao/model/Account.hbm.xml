@@ -13,6 +13,9 @@
         <property name="name" type="string">
             <column name="NAME" length="45" />
         </property>
+        <property name="phone" type="string">
+            <column name="PHONE" length="15" not-null="true" />
+        </property>
         <property name="createdDate" type="timestamp">
             <column name="CREATED_DATE" length="19" not-null="true" />
         </property>
