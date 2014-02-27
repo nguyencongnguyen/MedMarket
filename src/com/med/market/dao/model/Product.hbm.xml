@@ -13,16 +13,31 @@
         <property name="name" type="string">
             <column name="NAME" length="45" not-null="true" />
         </property>
+        <property name="friendlyUrl" type="string">
+            <column name="FRIENDLY_URL" length="45" not-null="true" />
+        </property>
         <property name="price" type="java.lang.Long">
             <column name="PRICE" not-null="true" />
         </property>
-        <property name="contactPhone" type="string">
-            <column name="CONTACT_PHONE" length="15"  not-null="true" />
+        <property name="password" type="string">
+            <column name="PASSWORD" length="20" not-null="true" />
         </property>
-        <many-to-one name="catId" class="com.ohs.dal.model.Category" lazy="false" fetch="select">
+        <property name="contactName" type="string">
+            <column name="CONTACT_NAME" length="50" not-null="true" />
+        </property>
+        <property name="contactPhone" type="string">
+            <column name="CONTACT_PHONE" length="15" not-null="true" />
+        </property>
+        <property name="contactEmail" type="string">
+            <column name="CONTACT_EMAIL" length="50" not-null="true" />
+        </property>
+        <property name="contactAddress" type="string">
+            <column name="CONTACT_ADDRESS" length="250" />
+        </property>
+        <many-to-one name="category" class="com.ohs.dal.model.Category" lazy="false" fetch="select">
             <column name="CAT_ID" not-null="true" />
         </many-to-one>
-        <many-to-one name="provinceId" class="com.ohs.dal.model.Province" lazy="false" fetch="select">
+        <many-to-one name="province" class="com.ohs.dal.model.Province" lazy="false" fetch="select">
             <column name="PROVINCE_ID" not-null="true" />
         </many-to-one>
         <property name="createdDate" type="timestamp">
@@ -31,8 +46,11 @@
         <property name="updateDate" type="timestamp">
             <column name="UPDATE_DATE" length="19" />
         </property>
-        <many-to-one name="accountId" class="com.ohs.dal.model.Account" lazy="false" fetch="select">
-            <column name="ACCOUNT_ID" not-null="true" />
-        </many-to-one>
+        <set name="images" table="image" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="imageId" not-null="true" />
+            </key>
+            <one-to-many class="com.ohs.dal.model.Image" />
+        </set>
     </class>
 </hibernate-mapping>

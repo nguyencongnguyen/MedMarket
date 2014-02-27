@@ -6,9 +6,8 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 
-import com.med.market.bll.impl.AccountServiceImpl;
+import com.med.market.bll.impl.CommonServiceImpl;
 import com.med.market.bll.impl.ProductServiceImpl;
-import com.med.market.dao.model.Account;
 import com.med.market.dao.model.Category;
 import com.med.market.dao.model.Product;
 import com.med.market.dao.model.Province;
@@ -16,44 +15,43 @@ import com.med.market.util.ConfigurationManager;
 
 public class ProductAction extends AbstractAction {
     private ProductServiceImpl productService;
-    private AccountServiceImpl accountService;
+    private CommonServiceImpl commonService;
     private String name;
-    private String username;
     private String password;
     private String description;
+    private String contactName;
+    private String contactPhone;
+    private String contactEmail;
+    private String contactAddress;
     private long price;
     private long catId;
     private long provinceId;
-    private File image;
-    private String imageFileName;
+    private String uploadedImages;
     private List<Province> provinces;
     private List<Category> categories;
 
     public String getProduct() {
-        provinces = productService.getAllProvince();
-        categories = productService.getAllCategories();
+        provinces = commonService.getAllProvince();
+        categories = commonService.getAllCategories();
         return "success";
     }
 
     public String postProduct() throws Exception {
-        Account account = accountService.get(username);
+        /*String filePath = ConfigurationManager.getAsString("fileupload.path");
+        String fileName = generateFileName(imageFileName);
+        File fileToCreate = new File(filePath, fileName);
+        FileUtils.copyFile(image, fileToCreate);*/
+
         Product product = new Product();
         product.setName(name);
         product.setDescription(description);
         product.setPrice(price);
-        product.setCatId(catId);
-        product.setProvinceId(provinceId);
-
-        Account account = new Account();
-        account.setUsername(username);
-        account.setPassword(password);
-
-        String filePath = ConfigurationManager.getAsString("fileupload.path");
-        String fileName = generateFileName(imageFileName);
-        File fileToCreate = new File(filePath, fileName);
-        FileUtils.copyFile(image, fileToCreate);
-
-        productService.add(product, account);
+        product.setContactName(contactName);
+        product.setContactEmail(contactEmail);
+        product.setContactPhone(contactPhone);
+        product.setContactAddress(contactAddress);
+        product.setPassword(password);
+        productService.add(product, catId, provinceId);
         return "success";
     }
 
@@ -70,14 +68,6 @@ public class ProductAction extends AbstractAction {
         this.productService = productService;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -86,28 +76,52 @@ public class ProductAction extends AbstractAction {
         this.password = password;
     }
 
-    public File getImage() {
-        return image;
+    public String getUploadedImages() {
+        return uploadedImages;
     }
 
-    public void setImage(File image) {
-        this.image = image;
+    public void setUploadedImages(String uploadedImages) {
+        this.uploadedImages = uploadedImages;
     }
 
-    public String getImageFileName() {
-        return imageFileName;
+    public CommonServiceImpl getCommonService() {
+        return commonService;
     }
 
-    public AccountServiceImpl getAccountService() {
-        return accountService;
+    public void setCommonService(CommonServiceImpl commonService) {
+        this.commonService = commonService;
     }
 
-    public void setAccountService(AccountServiceImpl accountService) {
-        this.accountService = accountService;
+    public String getContactName() {
+        return contactName;
     }
 
-    public void setImageFileName(String imageFileName) {
-        this.imageFileName = imageFileName;
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
+    }
+
+    public String getContactPhone() {
+        return contactPhone;
+    }
+
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone;
+    }
+
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
+    }
+
+    public String getContactAddress() {
+        return contactAddress;
+    }
+
+    public void setContactAddress(String contactAddress) {
+        this.contactAddress = contactAddress;
     }
 
     public String getName() {

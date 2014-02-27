@@ -41,16 +41,24 @@
 
 		<action name="getProduct"
 			class="productAction" method="getProduct">
-		    <result name="success">/pages/register.jsp</result>
+		    <result name="success">/pages/productAdd.jsp</result>
 		</action>
 
 		<action name="postProduct"
 			class="productAction" method="postProduct">
-			<result name="success" type="redirectAction">/home/profile-help</result>
-		    <result name="input">/pages/register.jsp</result>
+			<result name="success" type="redirectAction">/home/productAddSuccess</result>
+		    <result name="input">/pages/productAdd.jsp</result>
 		</action>
 
+		<action name="home"
+			class="homeAction" method="home">
+		    <result name="success">/pages/home.jsp</result>
+		</action>
 
+		<action name="search"
+			class="searchAction" method="search">
+		    <result name="success">/pages/searchResults.jsp</result>
+		</action>
 	</package>
 	<package name="admin" namespace="/admin" extends="struts-default">
 	</package>
