@@ -11,34 +11,19 @@
 	<constant name="struts.ognl.allowStaticMethodAccess" value="true"/>
 
 	<package name="main" namespace="/" extends="struts-default,json-default">
-		<interceptors>
-			<interceptor name="checklogin" class="loginInterceptor" />
-			<interceptor-stack name="defaultLoginStack">
-				<interceptor-ref name="defaultStack">
-			     	<param name="exception.logEnabled">true</param>
-			    	<param name="exception.logLevel">ERROR</param>
-			    </interceptor-ref>
-				<interceptor-ref name="checklogin" />
-			</interceptor-stack>
-			<interceptor-stack name="appDefaultStack">
-				<interceptor-ref name="defaultStack">
-			     	<param name="exception.logEnabled">true</param>
-			    	<param name="exception.logLevel">ERROR</param>
-			    </interceptor-ref>
-			</interceptor-stack>
-		</interceptors>
-
-		<default-interceptor-ref name="appDefaultStack" />
-
 		<global-results>
-			<result name="login" type="redirect">/pages/login.jsp</result>
 			<result name="error">/home/error</result>
 		</global-results>
 
 		<global-exception-mappings>
 	 		<exception-mapping exception="java.lang.Exception" result="error" />
    		</global-exception-mappings>
-
+   		
+		<action name="error"
+			class="homeAction" method="commonError" >
+		    <result name="error">/pages/error.jsp</result>
+		</action>
+		
 		<action name="getProduct"
 			class="productAction" method="getProduct">
 		    <result name="success">/pages/productAdd.jsp</result>
@@ -59,7 +44,5 @@
 			class="searchAction" method="search">
 		    <result name="success">/pages/searchResults.jsp</result>
 		</action>
-	</package>
-	<package name="admin" namespace="/admin" extends="struts-default">
 	</package>
 </struts>

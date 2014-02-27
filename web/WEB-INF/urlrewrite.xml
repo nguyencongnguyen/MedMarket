@@ -11,47 +11,11 @@
         <to>/main/home.action</to>
     </rule>
     <rule>
-        <from>^(/video)$</from>
-        <to>/video/view.action</to>
-    </rule>
-    <rule>
-        <from>^/video/(\w*(\-?\w*)*)$</from>
-        <to>/video/play.action?id=$1</to>
-    </rule>
-    <rule>
-        <from>^/video/(\w*(\-?\w*)*)\?(.*)$</from>
-        <to>/video/$1.action?$2</to>
-    </rule>
-    <rule>
-        <from>^/free/(\w*(\-?\w*)*)$</from>
-        <to>/free/$1.action</to>
-    </rule>
-    <rule>
         <from>^/home/(\w*(\-?\w*)*)$</from>
         <to>/main/$1.action</to>
     </rule>
     <rule>
-        <from>^/include/(\w*(\-?\w*)*)$</from>
-        <to>/free/bookingInclude.action?username=$1</to>
-    </rule>
-    <rule>
-        <from>^/includeSubmit/bookingIncludeSubmit$</from>
-        <to>/free/bookingIncludeSubmit.action</to>
-    </rule>
-    <rule>
-        <from>^/home/detail/(\d+)$</from>
-        <to>/main/booking.action?locationId=$1</to>
-    </rule>
-    <rule>
         <from>^/home/(\w*(\-?\w*)*)\?(.*)$</from>
         <to>/main/$1.action?$2</to>
-    </rule>
-    <rule>
-        <from>^/(\w*(\-?\w*)*)$</from>
-        <to>/main/booking.action?username=$1</to>
-    </rule>
-    <rule>
-        <from>^(/admin)$</from>
-        <to>/admin/home.action</to>
     </rule>
 </urlrewrite>

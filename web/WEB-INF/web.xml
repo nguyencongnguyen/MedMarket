@@ -23,7 +23,7 @@
 	<!--CharsetFilter start--> 
   <filter>
     <filter-name>CharsetFilter</filter-name>
-    <filter-class>com.ohs.fo.action.CharsetFilter</filter-class>
+    <filter-class>com.med.market.util.CharsetFilter</filter-class>
       <init-param>
         <param-name>requestEncoding</param-name>
         <param-value>UTF-8</param-value>

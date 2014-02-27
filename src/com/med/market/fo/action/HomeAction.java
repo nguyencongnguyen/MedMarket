@@ -16,11 +16,15 @@ public class HomeAction extends AbstractAction {
     private List<Category> categories;
     private String keyword;
 
-    private String home() {
+    public String home() {
         provinces = commonService.getAllProvince();
         categories = commonService.getAllCategories();
         return "success";
     }
+
+    public String commonError() throws Exception {
+		return "error";
+	}
 
     public ProductServiceImpl getProductService() {
         return productService;

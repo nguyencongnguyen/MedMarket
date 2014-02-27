@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="conf"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre6"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/antlr-2.7.6.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/aopalliance-1.0.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/asm-attrs.jar"/>
@@ -54,5 +54,7 @@
 	<classpathentry kind="lib" path="web/WEB-INF/lib/urlrewritefilter-4.0.3.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/xml-apis.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/xwork-core-2.1.6.jar"/>
+	<classpathentry kind="lib" path="C:/Data/Work/programs/apache-tomcat-6.0.35/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="C:/Data/Work/programs/apache-tomcat-6.0.35/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="web/WEB-INF/classes"/>
 </classpath>

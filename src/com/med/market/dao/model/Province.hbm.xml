@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Jun 9, 2012 10:42:34 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.ohs.dal.model.Province" table="province">
+    <class name="com.med.market.dao.model.Province" table="province">
         <id name="provinceId" type="java.lang.Long">
             <column name="PROVINCE_ID" />
             <generator class="identity" />

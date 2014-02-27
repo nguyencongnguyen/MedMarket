@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.ohs.dal.model.Product" table="product">
+    <class name="com.med.market.dao.model.Product" table="product">
         <id name="productId" type="java.lang.Long">
             <column name="PRODUCT_ID" length="20" />
             <generator class="identity" />
@@ -34,10 +34,10 @@
         <property name="contactAddress" type="string">
             <column name="CONTACT_ADDRESS" length="250" />
         </property>
-        <many-to-one name="category" class="com.ohs.dal.model.Category" lazy="false" fetch="select">
+        <many-to-one name="category" class="com.med.market.dao.model.Category" lazy="false" fetch="select">
             <column name="CAT_ID" not-null="true" />
         </many-to-one>
-        <many-to-one name="province" class="com.ohs.dal.model.Province" lazy="false" fetch="select">
+        <many-to-one name="province" class="com.med.market.dao.model.Province" lazy="false" fetch="select">
             <column name="PROVINCE_ID" not-null="true" />
         </many-to-one>
         <property name="createdDate" type="timestamp">
@@ -50,7 +50,7 @@
             <key>
                 <column name="imageId" not-null="true" />
             </key>
-            <one-to-many class="com.ohs.dal.model.Image" />
+            <one-to-many class="com.med.market.dao.model.Image" />
         </set>
     </class>
 </hibernate-mapping>

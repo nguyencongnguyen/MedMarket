@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.ohs.dal.model.Category" table="category">
+    <class name="com.med.market.dao.model.Category" table="category">
         <id name="catId" type="java.lang.Long">
             <column name="CAT_ID" length="20" />
             <generator class="identity" />

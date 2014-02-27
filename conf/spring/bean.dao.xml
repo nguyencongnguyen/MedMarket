@@ -4,16 +4,16 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<bean id="productService" class="com.med.market.bll.service.impl.ProductServiceImpl">
-		<property name="productDAO" ref="productDAO" />
+	<bean id="productService" class="com.med.market.bll.impl.ProductServiceImpl">
+		<property name="productDao" ref="productDao" />
 	</bean>
-	<bean id="productDAO" class="com.med.market.dal.dao.impl.ProductDAOImpl">
+	<bean id="productDao" class="com.med.market.dao.impl.ProductDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="commonService" class="com.med.market.bll.service.impl.commonServiceImpl">
-		<property name="commonDAO" ref="commonDAO" />
+	<bean id="commonService" class="com.med.market.bll.impl.CommonServiceImpl">
+		<property name="commonDao" ref="commonDao" />
 	</bean>
-	<bean id="commonDAO" class="com.med.market.dal.dao.impl.commonDAOImpl">
+	<bean id="commonDao" class="com.med.market.dao.impl.CommonDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 </beans>

@@ -4,9 +4,16 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
+	<bean id="homeAction" class="com.med.market.fo.action.HomeAction" scope="prototype">
+		<property name="productService" ref="productService" />
+		<property name="commonService" ref="commonService" />
+	</bean>
+	<bean id="searchAction" class="com.med.market.fo.action.SearchAction" scope="prototype">
+		<property name="productService" ref="productService" />
+		<property name="commonService" ref="commonService" />
+	</bean>
 	<bean id="productAction" class="com.med.market.fo.action.ProductAction" scope="prototype">
 		<property name="productService" ref="productService" />
 		<property name="commonService" ref="commonService" />
 	</bean>
-
 </beans>

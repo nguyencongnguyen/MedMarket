@@ -19,18 +19,12 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
        </props>
     </property>
  
- 	<property name="configLocation">    
-        <value>
-            classpath:hibernate.cfg.xml
-        </value>
-    </property>
-    
     <property name="mappingResources">
 		<list>
-          <value>com/ohs/dal/model/Account.hbm.xml</value>
-          <value>com/ohs/dal/model/Category.hbm.xml</value>
-          <value>com/ohs/dal/model/Product.hbm.xml</value>
-          <value>com/ohs/dal/model/Image.hbm.xml</value>
+          <value>com/med/market/dao/model/Category.hbm.xml</value>
+          <value>com/med/market/dao/model/Product.hbm.xml</value>
+          <value>com/med/market/dao/model/Image.hbm.xml</value>
+          <value>com/med/market/dao/model/Province.hbm.xml</value>
 		</list>
     </property>	
  
