@@ -110,7 +110,6 @@ input[type=text].age {
     font-weight: 600;
     height: 380px;
     line-height: 1;
-    margin-right: 15px;
     text-align: center;
     width: 50px;
 }
@@ -120,7 +119,8 @@ input[type=text].age {
 	color: #DC5968;
 }
 .description {
-	width: 580px;
+	width: 470px;
+	margin: 0 0 20px 30px;
 }
 .description ul li {
 	margin: 10px 0px;

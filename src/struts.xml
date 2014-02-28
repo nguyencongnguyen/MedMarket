@@ -11,6 +11,16 @@
 	<constant name="struts.ognl.allowStaticMethodAccess" value="true"/>
 
 	<package name="main" namespace="/" extends="struts-default,json-default">
+		<interceptors>
+		  <interceptor-stack name="appDefaultStack">
+		    <interceptor-ref name="defaultStack">
+		     <param name="exception.logEnabled">true</param>
+		     <param name="exception.logLevel">ERROR</param>
+		    </interceptor-ref>
+		 </interceptor-stack>
+		</interceptors>
+		
+		<default-interceptor-ref name="appDefaultStack" />
 		<global-results>
 			<result name="error">/home/error</result>
 		</global-results>
@@ -39,7 +49,12 @@
 			class="homeAction" method="home">
 		    <result name="success">/pages/home.jsp</result>
 		</action>
-
+		<action name="ajaxUploadImg"
+			class="productAction" method="ajaxUploadImg">
+		    <result type="json">
+		    	<param name="root">jsonData</param>
+		    </result>
+		</action>
 		<action name="search"
 			class="searchAction" method="search">
 		    <result name="success">/pages/searchResults.jsp</result>

@@ -18,7 +18,7 @@ public class CommonDAOImpl extends HibernateDaoSupport {
     }
 
     public List<Province> getAllProvince() {
-        return getHibernateTemplate().find("from Province p order by p.name asc");
+        return getHibernateTemplate().find("from Province p order by p.provinceId asc");
     }
 
     public List<Category> getAllCategories() {

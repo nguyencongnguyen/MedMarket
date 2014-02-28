@@ -2,6 +2,7 @@ package com.med.market.fo.action;
 
 import java.io.File;
 import java.util.Calendar;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
@@ -23,29 +24,32 @@ public class ProductAction extends AbstractAction {
     private String contactPhone;
     private String contactEmail;
     private String contactAddress;
-    private long price;
+    private String price;
     private long catId;
     private long provinceId;
     private String uploadedImages;
+    private File fileToUpload;
+    private String fileToUploadContentType;
+    private String fileToUploadFileName;
     private List<Province> provinces;
     private List<Category> categories;
+    private LinkedHashMap<String, Object> jsonData = new LinkedHashMap<String, Object>();
 
-    public String getProduct() {
+    public String getProduct() throws Exception {
         provinces = commonService.getAllProvince();
         categories = commonService.getAllCategories();
         return "success";
     }
 
     public String postProduct() throws Exception {
-        /*String filePath = ConfigurationManager.getAsString("fileupload.path");
-        String fileName = generateFileName(imageFileName);
-        File fileToCreate = new File(filePath, fileName);
-        FileUtils.copyFile(image, fileToCreate);*/
-
         Product product = new Product();
         product.setName(name);
         product.setDescription(description);
-        product.setPrice(price);
+        if (price != null && !"".equals(price)) {
+        	product.setPrice(Long.parseLong(price));
+        } else {
+        	product.setPrice(new Long(0));
+        }
         product.setContactName(contactName);
         product.setContactEmail(contactEmail);
         product.setContactPhone(contactPhone);
@@ -54,9 +58,25 @@ public class ProductAction extends AbstractAction {
         productService.add(product, catId, provinceId);
         return "success";
     }
+    
+    public String ajaxUploadImg() throws Exception {
+    	String filePath = ConfigurationManager.getAsString("fileupload.path");
+        String fileName = generateFileName(fileToUploadFileName);
+        File fileToCreate = new File(filePath, fileName);
+        FileUtils.copyFile(fileToUpload, fileToCreate);
+    	jsonData.put("url", fileToCreate.getName());
+    	return "success";
+    }
 
     private String generateFileName(String fileName) {
-        long time = Calendar.getInstance().getTimeInMillis();
+    	long time = Calendar.getInstance().getTimeInMillis();
+    	if (fileName == null) {
+    		return time + "";
+    	}
+    	fileName = fileName.replaceAll("\\s", "");
+        if (fileName.length() > 10) {
+        	fileName = fileName.substring(0, 9);
+        }
         return time + "_" + fileName;
     }
 
@@ -68,7 +88,39 @@ public class ProductAction extends AbstractAction {
         this.productService = productService;
     }
 
-    public String getPassword() {
+    public File getFileToUpload() {
+		return fileToUpload;
+	}
+
+	public void setFileToUpload(File fileToUpload) {
+		this.fileToUpload = fileToUpload;
+	}
+
+	public LinkedHashMap<String, Object> getJsonData() {
+		return jsonData;
+	}
+
+	public String getFileToUploadContentType() {
+		return fileToUploadContentType;
+	}
+
+	public void setFileToUploadContentType(String fileToUploadContentType) {
+		this.fileToUploadContentType = fileToUploadContentType;
+	}
+
+	public String getFileToUploadFileName() {
+		return fileToUploadFileName;
+	}
+
+	public void setFileToUploadFileName(String fileToUploadFileName) {
+		this.fileToUploadFileName = fileToUploadFileName;
+	}
+
+	public void setJsonData(LinkedHashMap<String, Object> jsonData) {
+		this.jsonData = jsonData;
+	}
+
+	public String getPassword() {
         return password;
     }
 
@@ -140,15 +192,15 @@ public class ProductAction extends AbstractAction {
         this.description = description;
     }
 
-    public long getPrice() {
-        return price;
-    }
+    public String getPrice() {
+		return price;
+	}
 
-    public void setPrice(long price) {
-        this.price = price;
-    }
+	public void setPrice(String price) {
+		this.price = price;
+	}
 
-    public long getCatId() {
+	public long getCatId() {
         return catId;
     }
 

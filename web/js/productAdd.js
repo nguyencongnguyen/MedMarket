@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("#loginForm").validate({
+    $("#createForm").validate({
         rules: {
             username: {
                 required: true
@@ -17,6 +17,10 @@ $(document).ready(function() {
             contactPhone: {
                 required: true,
                 digits: true
+            },
+            contactEmail: {
+                required: true,
+                email: true
             },
             name: {
                 required: true
@@ -49,6 +53,10 @@ $(document).ready(function() {
                 required: "Vui lòng nhập số điện thoại",
                 digits: "Số điện thoại không đúng"
             },
+            contactEmail: {
+            	required: "Vui lòng nhập email",
+            	email: "Email không hợp lệ"
+            },
             name: {
                 required: "Vui lòng nhập tên sản phẩm"
             },
@@ -67,30 +75,24 @@ $(document).ready(function() {
         }
     });
 
-    function ajaxFileUpload() {
-        $("#loading").ajaxStart(function(){
+    $("#upload").click(function(){
+        /*$("#loading").ajaxStart(function(){
             $(this).show();
         }).ajaxComplete(function(){
             $(this).hide();
-        });
+        });*/
         $.ajaxFileUpload( {
-            url:'doajaxfileupload.php',
+            url:'/home/ajaxUploadImg',
             secureuri:false,
             fileElementId:'fileToUpload',
             dataType: 'json',
             success: function (data, status) {
-                if(typeof(data.error) != 'undefined') {
-                    if(data.error != '') {
-                        alert(data.error);
-                    } else {
-                        alert(data.msg);
-                    }
-                }
+            	$("#uploadedImages").val($("#uploadedImages").val() + data.url + ",");
             },
             error: function (data, status, e) {
                 alert(e);
             }
         });
         return false;
-    }
+    });
 });
