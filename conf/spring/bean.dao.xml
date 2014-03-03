@@ -4,8 +4,12 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
+	<bean id="imageService" class="com.med.market.service.DropboxImageServiceImpl">
+	</bean>
 	<bean id="productService" class="com.med.market.bll.impl.ProductServiceImpl">
 		<property name="productDao" ref="productDao" />
+		<property name="commonDao" ref="commonDao" />
+		<property name="imageService" ref="imageService" />
 	</bean>
 	<bean id="productDao" class="com.med.market.dao.impl.ProductDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />

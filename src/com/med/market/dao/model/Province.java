@@ -1,7 +1,5 @@
 package com.med.market.dao.model;
 
-import java.util.HashSet;
-import java.util.Set;
 
 public class Province extends Entity {
     private long provinceId;

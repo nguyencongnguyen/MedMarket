@@ -4,7 +4,7 @@ public class Image extends Entity {
 	private long imgId;
 	private String thumbnail;
 	private String url;
-	private long productId;
+	private Product product;
 
 	public long getImgId() {
 		return imgId;
@@ -30,12 +30,12 @@ public class Image extends Entity {
 		this.url = url;
 	}
 
-	public long getProductId() {
-		return productId;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProductId(long productId) {
-		this.productId = productId;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 }

@@ -56,5 +56,6 @@
 	<classpathentry kind="lib" path="web/WEB-INF/lib/xwork-core-2.1.6.jar"/>
 	<classpathentry kind="lib" path="C:/Data/Work/programs/apache-tomcat-6.0.35/lib/jsp-api.jar"/>
 	<classpathentry kind="lib" path="C:/Data/Work/programs/apache-tomcat-6.0.35/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/dropbox-core-sdk-1.7.6.jar"/>
 	<classpathentry kind="output" path="web/WEB-INF/classes"/>
 </classpath>

@@ -44,7 +44,10 @@
 			<result name="success" type="redirectAction">/home/productAddSuccess</result>
 		    <result name="input">/pages/productAdd.jsp</result>
 		</action>
-
+		<action name="productAddSuccess"
+			class="productAction" method="productAddSuccess">
+		    <result name="success">/pages/productAddSuccess.jsp</result>
+		</action>
 		<action name="home"
 			class="homeAction" method="home">
 		    <result name="success">/pages/home.jsp</result>

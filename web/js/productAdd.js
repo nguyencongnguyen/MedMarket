@@ -34,6 +34,9 @@ $(document).ready(function() {
             image: {
                 required: true
             },
+            uploadedImages: {
+            	required: true
+            }
         },
         messages: {
             username: {
@@ -68,31 +71,52 @@ $(document).ready(function() {
             },
             image: {
                 required: "Vui lòng đăng ít nhất 1 hình ảnh về sản phẩm"
+            },
+            uploadedImages: {
+            	required: "Bạn cần phải đăng ít nhất 1 hình ảnh của sản phẩm"
             }
         },
         submitHandler: function(form) {
+        	$(".upload").attr("disabled", "disabled");
             form.submit();
-        }
+        },
+        ignore: []
     });
 
-    $("#upload").click(function(){
-        /*$("#loading").ajaxStart(function(){
+    $("#uploadImage").on("change", ".upload", function(){
+    	$('.loading').unbind('ajaxStart');
+    	$('.loading').unbind('ajaxComplete');
+        $(this).next().next().ajaxStart(function(){
             $(this).show();
         }).ajaxComplete(function(){
             $(this).hide();
-        });*/
+            $(this).prev().show();
+            $(this).prev().prev().hide();
+            $(this).next().show();
+        });
+        var fileNameContainer = $(this).parent().find("span");
         $.ajaxFileUpload( {
             url:'/home/ajaxUploadImg',
             secureuri:false,
-            fileElementId:'fileToUpload',
+            fileElementId: $(this).attr("id"),
             dataType: 'json',
             success: function (data, status) {
             	$("#uploadedImages").val($("#uploadedImages").val() + data.url + ",");
-            },
-            error: function (data, status, e) {
-                alert(e);
+            	fileNameContainer.html(data.url);
+            	$(this).replaceWith('<input type="file" id="' + $(this).attr("id") + '" name="fileToUpload" class="upload" />');
             }
         });
         return false;
+    });
+    
+    $(".delUpload").click(function() {
+    	var name = $(this).parent().find("span").html() + ",";
+    	$(this).parent().find("span").hide();
+    	$(this).hide();
+    	var value = $("#uploadedImages").val();
+    	value = value.replace(name,"");
+    	$("#uploadedImages").val(value);
+    	var control = $(this).parent().find("input");
+    	control.show();
     });
 });

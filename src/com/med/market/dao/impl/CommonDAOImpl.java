@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.med.market.dao.model.Category;
-import com.med.market.dao.model.Product;
+import com.med.market.dao.model.Image;
 import com.med.market.dao.model.Province;
 
 public class CommonDAOImpl extends HibernateDaoSupport {
@@ -24,4 +24,8 @@ public class CommonDAOImpl extends HibernateDaoSupport {
     public List<Category> getAllCategories() {
         return getHibernateTemplate().find("from Category c order by c.name asc");
     }
+    
+    public void addImage(Image entity) {
+	 	getHibernateTemplate().save(entity);
+	}
 }

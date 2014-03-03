@@ -1,9 +1,11 @@
 package com.med.market.bll.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import com.med.market.dao.impl.CommonDAOImpl;
 import com.med.market.dao.model.Category;
+import com.med.market.dao.model.Image;
 import com.med.market.dao.model.Province;
 
 public class CommonServiceImpl {
@@ -25,4 +27,8 @@ public class CommonServiceImpl {
         this.commonDao = commonDao;
     }
 
+    public void addImage(Image entity) {
+    	entity.setCreatedDate(new Date());
+    	commonDao.addImage(entity);
+    }
 }

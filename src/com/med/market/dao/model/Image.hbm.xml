@@ -13,7 +13,7 @@
         <property name="url" type="string">
             <column name="URL" length="200" not-null="true" />
         </property>
-        <many-to-one name="productId" class="com.med.market.dao.model.Product" lazy="false" fetch="select">
+        <many-to-one name="product" class="com.med.market.dao.model.Product" lazy="false" fetch="select">
             <column name="PRODUCT_ID" not-null="true" />
         </many-to-one>
         <property name="createdDate" type="timestamp">

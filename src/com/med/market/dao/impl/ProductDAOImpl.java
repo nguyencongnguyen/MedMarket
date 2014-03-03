@@ -9,8 +9,8 @@ import com.med.market.dao.model.Product;
 
 public class ProductDAOImpl extends HibernateDaoSupport {
 
-	public void add(Product entity) {
-	 	getHibernateTemplate().save(entity);
+	public Product addAndLoad(Product entity) {
+	 	return (Product) getHibernateTemplate().get(Product.class, (Long) getHibernateTemplate().save(entity));
 	}
 
 	public Product get(String username) {

@@ -10,8 +10,10 @@ import org.apache.commons.io.FileUtils;
 import com.med.market.bll.impl.CommonServiceImpl;
 import com.med.market.bll.impl.ProductServiceImpl;
 import com.med.market.dao.model.Category;
+import com.med.market.dao.model.Image;
 import com.med.market.dao.model.Product;
 import com.med.market.dao.model.Province;
+import com.med.market.service.ImageService;
 import com.med.market.util.ConfigurationManager;
 
 public class ProductAction extends AbstractAction {
@@ -25,8 +27,8 @@ public class ProductAction extends AbstractAction {
     private String contactEmail;
     private String contactAddress;
     private String price;
-    private long catId;
-    private long provinceId;
+    private String catId;
+    private String provinceId;
     private String uploadedImages;
     private File fileToUpload;
     private String fileToUploadContentType;
@@ -55,8 +57,13 @@ public class ProductAction extends AbstractAction {
         product.setContactPhone(contactPhone);
         product.setContactAddress(contactAddress);
         product.setPassword(password);
-        productService.add(product, catId, provinceId);
+        productService.txAdd(product, new Long(catId), new Long(provinceId), uploadedImages);
+        
         return "success";
+    }
+    
+    public String productAddSuccess() throws Exception {
+    	return "success";
     }
     
     public String ajaxUploadImg() throws Exception {
@@ -75,7 +82,7 @@ public class ProductAction extends AbstractAction {
     	}
     	fileName = fileName.replaceAll("\\s", "");
         if (fileName.length() > 10) {
-        	fileName = fileName.substring(0, 9);
+        	fileName = fileName.substring(fileName.length() - 10, fileName.length());
         }
         return time + "_" + fileName;
     }
@@ -200,23 +207,23 @@ public class ProductAction extends AbstractAction {
 		this.price = price;
 	}
 
-	public long getCatId() {
-        return catId;
-    }
+	public String getCatId() {
+		return catId;
+	}
 
-    public void setCatId(long catId) {
-        this.catId = catId;
-    }
+	public void setCatId(String catId) {
+		this.catId = catId;
+	}
 
-    public long getProvinceId() {
-        return provinceId;
-    }
+	public String getProvinceId() {
+		return provinceId;
+	}
 
-    public void setProvinceId(long provinceId) {
-        this.provinceId = provinceId;
-    }
+	public void setProvinceId(String provinceId) {
+		this.provinceId = provinceId;
+	}
 
-    public List<Province> getProvinces() {
+	public List<Province> getProvinces() {
         return provinces;
     }
 
