@@ -1,4 +1,7 @@
 $(document).ready(function() {
+	if ($(".upload").attr("disabled") == "disabled") {
+		$(".upload").attr("disabled", "");
+	}
     $("#createForm").validate({
         rules: {
             username: {

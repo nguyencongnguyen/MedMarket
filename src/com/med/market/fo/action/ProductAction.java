@@ -7,18 +7,16 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 
-import com.med.market.bll.impl.CommonServiceImpl;
-import com.med.market.bll.impl.ProductServiceImpl;
+import com.med.market.bll.service.CommonService;
+import com.med.market.bll.service.ProductService;
 import com.med.market.dao.model.Category;
-import com.med.market.dao.model.Image;
 import com.med.market.dao.model.Product;
 import com.med.market.dao.model.Province;
-import com.med.market.service.ImageService;
 import com.med.market.util.ConfigurationManager;
 
 public class ProductAction extends AbstractAction {
-    private ProductServiceImpl productService;
-    private CommonServiceImpl commonService;
+    private ProductService productService;
+    private CommonService commonService;
     private String name;
     private String password;
     private String description;
@@ -87,11 +85,11 @@ public class ProductAction extends AbstractAction {
         return time + "_" + fileName;
     }
 
-    public ProductServiceImpl getProductService() {
+    public ProductService getProductService() {
         return productService;
     }
 
-    public void setProductService(ProductServiceImpl productService) {
+    public void setProductService(ProductService productService) {
         this.productService = productService;
     }
 
@@ -143,11 +141,11 @@ public class ProductAction extends AbstractAction {
         this.uploadedImages = uploadedImages;
     }
 
-    public CommonServiceImpl getCommonService() {
+    public CommonService getCommonService() {
         return commonService;
     }
 
-    public void setCommonService(CommonServiceImpl commonService) {
+    public void setCommonService(CommonService commonService) {
         this.commonService = commonService;
     }
 

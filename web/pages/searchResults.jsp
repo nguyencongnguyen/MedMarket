@@ -1,7 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<link href="<%= request.getContextPath() %>/css/schedule.css" rel="stylesheet" type="text/css" />
+<link href="<%= request.getContextPath() %>/css/product.css" rel="stylesheet" type="text/css" />
 
 <div class="left left-content">
 	<div id="searchBox">
@@ -23,12 +23,7 @@
 				<s:iterator value="result" status="product" id="aProduct">
 					<li>
 						<div class="left">
-							<s:if test='%imageUrl != null && imageUrl != ""'>
-								<img src='/home/getImage?pic=<s:property value="imageUrl" />' width="100" />
-							</s:if>
-							<s:else>
-								<img src='<%=request.getContextPath() %>/images/hospital-default.png' width="100" />
-							</s:else>
+							<img src='<s:property value="defaultThumnbail"/>' width="100" />
 						</div>
 						<div class="left" style="width: 440px">
 							<a href='/<s:property value="friendlyUrl"/>' >
@@ -39,10 +34,10 @@
 							    <s:property value="price"/><br />
                             </s:if>
                             <s:else>
-                                Call
+                                Call<br />
                             </s:else>
-							Loại sản phẩm: <s:property value="category.name"/><br />
-							Phạm vi giao dịch: <s:property value="province.name"/><br />
+							Loại sản phẩm: <s:property value="categoryName"/><br />
+							Phạm vi giao dịch: <s:property value="provinceName"/><br />
 							<div class="info"><s:property value="description"/></div>
 							<div><a href='/<s:property value="friendlyUrl"/>' class="button">Xem chi tiết</a></div>
 						</div>

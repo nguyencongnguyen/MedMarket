@@ -1,22 +1,24 @@
 package com.med.market.fo.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.med.market.bll.impl.CommonServiceImpl;
-import com.med.market.bll.impl.ProductServiceImpl;
+import com.med.market.bll.service.CommonService;
+import com.med.market.bll.service.ProductService;
 import com.med.market.dao.model.Category;
 import com.med.market.dao.model.Product;
 import com.med.market.dao.model.Province;
+import com.med.market.util.SearchResult;
 
 public class SearchAction extends AbstractAction {
     private static final int RESULT_PER_PAGE = 20;
-    private ProductServiceImpl productService;
-    private CommonServiceImpl commonService;
+    private ProductService productService;
+    private CommonService commonService;
     private long catId;
     private long provinceId;
-    private List<Province> provinces;
-    private List<Category> categories;
-    private List<Product> result;
+    private List<Province> provinces = new ArrayList<Province>();
+    private List<Category> categories = new ArrayList<Category>();
+    private List<SearchResult> result;
     private String keyword;
     private int page;
     private int totalPage;
@@ -32,10 +34,14 @@ public class SearchAction extends AbstractAction {
     public String search() {
         if (keyword == null) {
             keyword = "";
+            catId = -1;
+            provinceId = -1;
         }
         if (page == 0) {
             page = 1;
         }
+        provinces = commonService.getAllProvince();
+        categories = commonService.getAllCategories();
         provinces.add(new Province(-1, "Tất cả"));
         categories.add(new Category(-1, "Tất cả"));
 
@@ -55,19 +61,19 @@ public class SearchAction extends AbstractAction {
         return url.contains("?") ? url + "&page=" : url + "?page=";
     }
 
-    public ProductServiceImpl getProductService() {
+    public ProductService getProductService() {
         return productService;
     }
 
-    public void setProductService(ProductServiceImpl productService) {
+    public void setProductService(ProductService productService) {
         this.productService = productService;
     }
 
-    public CommonServiceImpl getCommonService() {
+    public CommonService getCommonService() {
         return commonService;
     }
 
-    public void setCommonService(CommonServiceImpl commonService) {
+    public void setCommonService(CommonService commonService) {
         this.commonService = commonService;
     }
 
@@ -143,12 +149,12 @@ public class SearchAction extends AbstractAction {
         this.keyword = keyword;
     }
 
-    public List<Product> getResult() {
-        return result;
-    }
+	public List<SearchResult> getResult() {
+		return result;
+	}
 
-    public void setResult(List<Product> result) {
-        this.result = result;
-    }
+	public void setResult(List<SearchResult> result) {
+		this.result = result;
+	}
 
 }

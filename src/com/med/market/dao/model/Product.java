@@ -16,7 +16,7 @@ public class Product extends Entity {
     private long price;
     private Category category;
     private Province province;
-    private Set images = new HashSet(0);
+    private Set<Image> images = new HashSet<Image>(0);
 
     public String getName() {
         return name;
@@ -114,11 +114,11 @@ public class Product extends Entity {
         this.contactAddress = contactAddress;
     }
 
-    public Set getImages() {
+    public Set<Image> getImages() {
         return images;
     }
 
-    public void setImages(Set images) {
+    public void setImages(Set<Image> images) {
         this.images = images;
     }
 

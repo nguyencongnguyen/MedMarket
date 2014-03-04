@@ -2,14 +2,14 @@ package com.med.market.fo.action;
 
 import java.util.List;
 
-import com.med.market.bll.impl.CommonServiceImpl;
-import com.med.market.bll.impl.ProductServiceImpl;
+import com.med.market.bll.service.CommonService;
+import com.med.market.bll.service.ProductService;
 import com.med.market.dao.model.Category;
 import com.med.market.dao.model.Province;
 
 public class HomeAction extends AbstractAction {
-    private ProductServiceImpl productService;
-    private CommonServiceImpl commonService;
+    private ProductService productService;
+    private CommonService commonService;
     private long catId;
     private long provinceId;
     private List<Province> provinces;
@@ -26,19 +26,19 @@ public class HomeAction extends AbstractAction {
 		return "error";
 	}
 
-    public ProductServiceImpl getProductService() {
+    public ProductService getProductService() {
         return productService;
     }
 
-    public void setProductService(ProductServiceImpl productService) {
+    public void setProductService(ProductService productService) {
         this.productService = productService;
     }
 
-    public CommonServiceImpl getCommonService() {
+    public CommonService getCommonService() {
         return commonService;
     }
 
-    public void setCommonService(CommonServiceImpl commonService) {
+    public void setCommonService(CommonService commonService) {
         this.commonService = commonService;
     }
 

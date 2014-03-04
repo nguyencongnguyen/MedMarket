@@ -15,8 +15,7 @@
    	<div class="right">
 		<ul>
 			<li><div class="fb-like" data-href="http://www.dathenkhambenh.com" data-width="60" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div></li>
-			<li><a href="/home/login" rel="nofollow">Đăng nhập</a> |</li>
-			<li><a href="/home/register" rel="nofollow">Đăng kí</a> |</li>
+			<li><a href="/home/about">Giới thiệu</a> |</li>
 			<li><a href="/home/contact" rel="nofollow">Liên hệ</a></li>
 		</ul>		
 		<div class="right">

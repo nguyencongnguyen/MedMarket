@@ -46,9 +46,9 @@
         <property name="updateDate" type="timestamp">
             <column name="UPDATE_DATE" length="19" />
         </property>
-        <set name="images" table="image" inverse="true" lazy="true" fetch="select">
+        <set name="images" table="image" inverse="true" lazy="false" fetch="select">
             <key>
-                <column name="imageId" not-null="true" />
+                <column name="IMG_ID" not-null="true" />
             </key>
             <one-to-many class="com.med.market.dao.model.Image" />
         </set>

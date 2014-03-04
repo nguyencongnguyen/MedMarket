@@ -4,11 +4,12 @@ import java.util.List;
 
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import com.med.market.dao.CommonDAO;
 import com.med.market.dao.model.Category;
 import com.med.market.dao.model.Image;
 import com.med.market.dao.model.Province;
 
-public class CommonDAOImpl extends HibernateDaoSupport {
+public class CommonDAOImpl extends HibernateDaoSupport implements CommonDAO {
     public Category getCategory(long catId) {
         return (Category) getHibernateTemplate().get(Category.class, catId);
     }
@@ -28,4 +29,8 @@ public class CommonDAOImpl extends HibernateDaoSupport {
     public void addImage(Image entity) {
 	 	getHibernateTemplate().save(entity);
 	}
+    
+    public List<Image> getImagesByProductId(long productId) {
+    	return getHibernateTemplate().find("from Image i where i.product.productId = " + productId + " order by i.imgId asc");
+    }
 }
