@@ -18,4 +18,8 @@
         <from>^/home/(\w*(\-?\w*)*)\?(.*)$</from>
         <to>/main/$1.action?$2</to>
     </rule>
+    <rule>
+        <from>^/(\w*(\-?\w*)*)$</from>
+        <to>/main/viewDetail.action?url=$1</to>
+    </rule>
 </urlrewrite>

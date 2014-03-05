@@ -9,4 +9,5 @@ public interface ProductService {
 	public void txAdd(Product product, long catId, long provinceId, String uploadedImages) throws Exception;
 	public int searchTotal(String keyword, long provinceId, long catId);
 	public List<SearchResult> search(String keyword, int startIndex, int pageSize, long provinceId, long catId);
+	public Product getByUrl(String url);
 }

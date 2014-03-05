@@ -32,4 +32,8 @@ public class CommonServiceImpl implements CommonService {
 		entity.setCreatedDate(new Date());
 		commonDao.addImage(entity);
 	}
+
+	public List<Image> getImagesByProductId(long productId) {
+		return commonDao.getImagesByProductId(productId);
+	}
 }

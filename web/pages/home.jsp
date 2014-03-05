@@ -8,7 +8,7 @@
 <body>
 <div style="width: 940px; height: 80px; text-align: center; margin-top: 100px;">
 	
-    <br/>Bấm <a href="/home/getProduct">vào đây</a> để tiếp tục đăng tin rao vặt khác.
+    <br/>Bấm <a href="/home/addProduct">vào đây</a> để tiếp tục đăng tin rao vặt khác.
 </div>
 </body>
 </html>

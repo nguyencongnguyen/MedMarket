@@ -58,3 +58,35 @@
 .resultList .info {
 	color: #666;
 }
+
+.imageContainer {
+	width: 300px;
+	height: 300px;
+	border: 1px solid grey;
+	float: left;
+}
+
+.imageList {
+	width: 100px;
+	float: left;	
+}
+.imageList ul {
+	margin: 0px 10px;
+	padding: 0;
+}
+.imageList ul li {
+	float: left;
+	list-style: none;
+	margin: 5px 0px;
+}
+.imageList ul li img:hover {
+	cursor: pointer;
+}
+.detail {
+	float: left;
+	width: 450px;
+}
+.description {
+	float: left;
+	
+}

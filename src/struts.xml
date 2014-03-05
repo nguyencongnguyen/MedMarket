@@ -34,7 +34,12 @@
 		    <result name="error">/pages/error.jsp</result>
 		</action>
 		
-		<action name="getProduct"
+		<action name="viewDetail"
+			class="productAction" method="viewDetail">
+		    <result name="success">/pages/productDetail.jsp</result>
+		</action>
+		
+		<action name="addProduct"
 			class="productAction" method="getProduct">
 		    <result name="success">/pages/productAdd.jsp</result>
 		</action>

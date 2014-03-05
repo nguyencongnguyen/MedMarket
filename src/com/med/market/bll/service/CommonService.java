@@ -12,4 +12,6 @@ public interface CommonService {
 	public List<Category> getAllCategories();
 
 	public void addImage(Image entity);
+	
+	public List<Image> getImagesByProductId(long productId);
 }

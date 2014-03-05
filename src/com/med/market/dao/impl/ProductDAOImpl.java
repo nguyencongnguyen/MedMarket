@@ -14,8 +14,12 @@ public class ProductDAOImpl extends HibernateDaoSupport implements ProductDAO {
 	 	return (Product) getHibernateTemplate().get(Product.class, (Long) getHibernateTemplate().save(entity));
 	}
 
-	public Product get(String username) {
-		return (Product) getHibernateTemplate().get(Product.class, username);
+	public Product get(long productId) {
+		return (Product) getHibernateTemplate().get(Product.class, productId);
+	}
+	
+	public Product getByUrl(String url) {
+		return (Product) getHibernateTemplate().find("from Product p where p.friendlyUrl = '" + url +"'").get(0);
 	}
 
 	public int searchTotal(String keyword, long provinceId, long catId) {

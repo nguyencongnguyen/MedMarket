@@ -10,6 +10,7 @@ import org.apache.commons.io.FileUtils;
 import com.med.market.bll.service.CommonService;
 import com.med.market.bll.service.ProductService;
 import com.med.market.dao.model.Category;
+import com.med.market.dao.model.Image;
 import com.med.market.dao.model.Product;
 import com.med.market.dao.model.Province;
 import com.med.market.util.ConfigurationManager;
@@ -17,6 +18,9 @@ import com.med.market.util.ConfigurationManager;
 public class ProductAction extends AbstractAction {
     private ProductService productService;
     private CommonService commonService;
+    private List<Image> images;
+    private Product product;
+    private String url;
     private String name;
     private String password;
     private String description;
@@ -35,7 +39,7 @@ public class ProductAction extends AbstractAction {
     private List<Category> categories;
     private LinkedHashMap<String, Object> jsonData = new LinkedHashMap<String, Object>();
 
-    public String getProduct() throws Exception {
+    public String addProduct() throws Exception {
         provinces = commonService.getAllProvince();
         categories = commonService.getAllCategories();
         return "success";
@@ -73,6 +77,16 @@ public class ProductAction extends AbstractAction {
     	return "success";
     }
 
+    public String viewDetail() throws Exception {
+    	product = productService.getByUrl(url);
+    	if (product != null) {
+    		images = commonService.getImagesByProductId(product.getProductId());
+    	} else {
+    		return "error";
+    	}
+    	return "success";
+    }
+    
     private String generateFileName(String fileName) {
     	long time = Calendar.getInstance().getTimeInMillis();
     	if (fileName == null) {
@@ -89,7 +103,15 @@ public class ProductAction extends AbstractAction {
         return productService;
     }
 
-    public void setProductService(ProductService productService) {
+    public List<Image> getImages() {
+		return images;
+	}
+
+	public void setImages(List<Image> images) {
+		this.images = images;
+	}
+
+	public void setProductService(ProductService productService) {
         this.productService = productService;
     }
 
@@ -99,6 +121,22 @@ public class ProductAction extends AbstractAction {
 
 	public void setFileToUpload(File fileToUpload) {
 		this.fileToUpload = fileToUpload;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public LinkedHashMap<String, Object> getJsonData() {

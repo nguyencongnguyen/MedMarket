@@ -48,6 +48,10 @@ public class ProductServiceImpl implements ProductService {
 		}
 	}
 
+	public Product getByUrl(String url) {
+		return productDao.getByUrl(url);
+	}
+	
 	public int searchTotal(String keyword, long provinceId, long catId) {
 		return productDao.searchTotal(keyword, provinceId, catId);
 	}
