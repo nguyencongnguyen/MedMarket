@@ -10,4 +10,5 @@ public interface ProductDAO {
 	public Product getByUrl(String url);
 	public int searchTotal(String keyword, long provinceId, long catId);
 	public List<Product> search(String keyword, int startIndex, int pageSize, long provinceId, long catId);
+	public List<Product> findSimilar(long catId, int num);
 }

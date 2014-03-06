@@ -40,7 +40,7 @@
 		</action>
 		
 		<action name="addProduct"
-			class="productAction" method="getProduct">
+			class="productAction" method="addProduct">
 		    <result name="success">/pages/productAdd.jsp</result>
 		</action>
 

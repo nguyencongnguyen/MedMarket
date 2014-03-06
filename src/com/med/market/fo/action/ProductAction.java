@@ -14,11 +14,14 @@ import com.med.market.dao.model.Image;
 import com.med.market.dao.model.Product;
 import com.med.market.dao.model.Province;
 import com.med.market.util.ConfigurationManager;
+import com.med.market.util.CrossSellProduct;
 
 public class ProductAction extends AbstractAction {
+	private static final int NUMBER_OF_SIMILAR = 10;
     private ProductService productService;
     private CommonService commonService;
     private List<Image> images;
+    private List<CrossSellProduct> similar;
     private Product product;
     private String url;
     private String name;
@@ -84,6 +87,7 @@ public class ProductAction extends AbstractAction {
     	} else {
     		return "error";
     	}
+    	similar = productService.findSimilar(product.getProductId(), product.getCategory().getCatId(), NUMBER_OF_SIMILAR);
     	return "success";
     }
     
@@ -117,6 +121,14 @@ public class ProductAction extends AbstractAction {
 
     public File getFileToUpload() {
 		return fileToUpload;
+	}
+
+	public List<CrossSellProduct> getSimilar() {
+		return similar;
+	}
+
+	public void setSimilar(List<CrossSellProduct> similar) {
+		this.similar = similar;
 	}
 
 	public void setFileToUpload(File fileToUpload) {

@@ -46,7 +46,7 @@
         <property name="updateDate" type="timestamp">
             <column name="UPDATE_DATE" length="19" />
         </property>
-        <set name="images" table="image" inverse="true" lazy="false" fetch="select">
+        <set name="images" table="image" inverse="true" lazy="false" fetch="join">
             <key>
                 <column name="IMG_ID" not-null="true" />
             </key>

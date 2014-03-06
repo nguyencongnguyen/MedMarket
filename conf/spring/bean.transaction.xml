@@ -15,6 +15,7 @@ xsi:schemaLocation="
     	<tx:method name="txAdd"/>
     	<tx:method name="search"/>
     	<tx:method name="searchTotal"/>
+    	<tx:method name="findSimilar"/>
     </tx:attributes>
 </tx:advice>
 

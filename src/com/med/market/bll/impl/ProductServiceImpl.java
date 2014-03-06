@@ -1,10 +1,11 @@
 package com.med.market.bll.impl;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import com.med.market.bll.service.ProductService;
 import com.med.market.dao.CommonDAO;
@@ -15,6 +16,7 @@ import com.med.market.dao.model.Product;
 import com.med.market.dao.model.Province;
 import com.med.market.service.ImageService;
 import com.med.market.util.ConfigurationManager;
+import com.med.market.util.CrossSellProduct;
 import com.med.market.util.SearchResult;
 
 public class ProductServiceImpl implements ProductService {
@@ -52,6 +54,28 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.getByUrl(url);
 	}
 	
+	public List<CrossSellProduct> findSimilar(long productId, long catId, int num) {
+		List<Product> products = productDao.findSimilar(catId, num + 1);
+		List<CrossSellProduct> result = new ArrayList<CrossSellProduct>();
+		int n = 0;
+		for (Product product : products) {
+			if (product.getProductId() != productId && n < num) {
+				CrossSellProduct crossSell = new CrossSellProduct();
+				crossSell.setProductId(product.getProductId());
+				crossSell.setName(product.getName());
+				crossSell.setDescription(product.getDescription());
+				crossSell.setFriendlyUrl(product.getFriendlyUrl());
+				crossSell.setPrice(product.getPrice());
+				List<Image> images = commonDao.getImagesByProductId(product.getProductId());
+				Image defaultImg = images.get(0);
+				crossSell.setDefaultThumnbail(defaultImg.getThumbnail());
+				result.add(crossSell);
+				n++;
+			}
+		}
+		return result;
+	}
+	
 	public int searchTotal(String keyword, long provinceId, long catId) {
 		return productDao.searchTotal(keyword, provinceId, catId);
 	}
@@ -78,8 +102,16 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	private String generateFriendlyUrl(String name) {
+		String str = "";
+		try {
+			str = URLEncoder.encode(name, "UTF-8");
+			str = str.replace("%20", "-");
+			str = str.replaceAll("%[a-zA-Z0-9][a-zA-Z0-9]", "");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		long time = Calendar.getInstance().getTimeInMillis();
-		return name.replace(" ", "-") + "-" + time;
+		return str + "-" + time;
 	}
 
 	public ProductDAO getProductDao() {

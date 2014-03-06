@@ -22,6 +22,15 @@ public class ProductDAOImpl extends HibernateDaoSupport implements ProductDAO {
 		return (Product) getHibernateTemplate().find("from Product p where p.friendlyUrl = '" + url +"'").get(0);
 	}
 
+	public List<Product> findSimilar(long catId, int num) {
+		String queryString = "from Product p where p.category.catId=:catId order by RAND()";
+		Query query = getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery(queryString);
+		query.setParameter("catId", catId);
+		query.setFirstResult(0);
+		query.setMaxResults(num);
+		return (List<Product>) query.list();
+	}
+	
 	public int searchTotal(String keyword, long provinceId, long catId) {
         String queryString = buildSearch(keyword, provinceId, catId);
         return getHibernateTemplate().find(queryString).size();
