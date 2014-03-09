@@ -82,13 +82,16 @@
 .imageList ul li img:hover {
 	cursor: pointer;
 }
+.image {
+	float: left;
+}
 .detail {
 	float: left;
 	width: 450px;
 }
-.description {
-	float: left;
-	
+.infoDetail {
+	clear: both;
+	margin: 0;
 }
 #similar {
 	float: left;

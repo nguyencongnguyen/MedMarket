@@ -36,20 +36,28 @@
 		<s:if test="%{product.contactAddress != ''}">
 		Địa chỉ: <s:property value="product.contactAddress"/><br/>
 		</s:if>
-	</div>
-	<div class="description">
-		<br/><s:property value="product.description"/><br/>
+		<br/><br/>
+		<a class="button" href='/home/updateProduct?update=true&productId=<s:property value="product.productId"/>'>Cập nhật tin</a>&nbsp;&nbsp;
+		<a class="button" href='/home/updateProduct?update=false&productId=<s:property value="product.productId"/>'>Xóa tin</a>
 	</div>
 </div>
-<s:if test="%{similar.size() > 0}">
+<div class="infoDetail">
+	<br/><s:property value="product.description"/><br/>
+</div>
+<s:if test="%{similar.size() > 1}">
 	<div class="left" style="width: 100%; margin-top: 30px;"><p>Có thể bạn quan tâm:</div>
 	<div class='prev'><img src="<%= request.getContextPath() %>/images/carPrev-on.png" /></div>
 	<div id="similar">
 		<ul>
 			<s:iterator value="similar" status="product">
-				<li><img class="imageView" src='<s:property value="defaultThumnbail"/>' alt='<s:property value="name"/>' height="60" /><br/>
+				<li><a href='/<s:property value="friendlyUrl"/>'><img class="imageView" src='<s:property value="defaultThumnbail"/>' alt='<s:property value="name"/>' height="60" /></a><br/>
 				<s:property value="name"/><br/>
-				<s:property value="price"/></li>
+				<s:if test="%{price > 0}">
+					<s:property value="price"/><br />
+		        </s:if>
+		        <s:else>
+		            Call<br />
+		        </s:else></li>
 			</s:iterator>
 		</ul>
 	</div>

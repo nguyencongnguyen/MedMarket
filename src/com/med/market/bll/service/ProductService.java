@@ -11,5 +11,7 @@ public interface ProductService {
 	public int searchTotal(String keyword, long provinceId, long catId);
 	public List<SearchResult> search(String keyword, int startIndex, int pageSize, long provinceId, long catId);
 	public Product getByUrl(String url);
+	public Product get(long id);
 	public List<CrossSellProduct> findSimilar(long productId, long catId, int num);
+	public void delete(Product product);
 }

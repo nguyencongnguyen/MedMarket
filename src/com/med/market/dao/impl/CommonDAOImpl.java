@@ -2,6 +2,7 @@ package com.med.market.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.med.market.dao.CommonDAO;
@@ -33,4 +34,15 @@ public class CommonDAOImpl extends HibernateDaoSupport implements CommonDAO {
     public List<Image> getImagesByProductId(long productId) {
     	return getHibernateTemplate().find("from Image i where i.product.productId = " + productId + " order by i.imgId asc");
     }
+
+	public void deleteImage(Image image) {
+		getHibernateTemplate().delete(image);
+	}
+	
+	public void deleteImageByProductId(long productId) {
+		String queryString = "delete from Image i where i.product.productId=:id";
+		Query query = getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery(queryString);
+		query.setParameter("id", productId);
+		query.executeUpdate();
+	}
 }

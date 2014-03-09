@@ -3,10 +3,14 @@ $(document).ready(function() {
 	$(".imageView").click(function() {
 		$("#productImage").attr("src", $(this).next().val());
 	});
-	
-	$("#similar").jCarouselLite({
-		btnPrev: $(".prev"),
-		btnNext: $(".next"),
-	    visible: 6
-	});
+	if ($("#similar ul li").size() > 6) {
+		$("#similar").jCarouselLite({
+			btnPrev: $(".prev"),
+			btnNext: $(".next"),
+		    visible: 6
+		});
+	} else {
+		 $(".prev").hide();
+		 $(".next").hide();
+	}
 });

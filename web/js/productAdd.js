@@ -122,4 +122,16 @@ $(document).ready(function() {
     	var control = $(this).parent().find("input");
     	control.show();
     });
+    
+    var uploadedImages = $("#uploadedImages").val();
+    if (uploadedImages != "") {
+    	var images = uploadedImages.split(",");
+    	for (var i=1; i<=images.length; i++) {
+    		if(images[i-1] != "") {
+    			$("#imageName" + i).html(images[i-1]);
+	    		$("#image" + i).find(".uploaded").show();
+	    		$("#image" + i).find(".upload").hide();
+    		}
+    	}
+    }
 });

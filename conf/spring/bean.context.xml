@@ -15,5 +15,6 @@
 	<bean id="productAction" class="com.med.market.fo.action.ProductAction" scope="prototype">
 		<property name="productService" ref="productService" />
 		<property name="commonService" ref="commonService" />
+		<property name="mailService" ref="mailService" />
 	</bean>
 </beans>

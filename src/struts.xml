@@ -46,12 +46,26 @@
 
 		<action name="postProduct"
 			class="productAction" method="postProduct">
-			<result name="success" type="redirectAction">/home/productAddSuccess</result>
+			<result name="success">/pages/productSuccess.jsp</result>
 		    <result name="input">/pages/productAdd.jsp</result>
 		</action>
-		<action name="productAddSuccess"
-			class="productAction" method="productAddSuccess">
-		    <result name="success">/pages/productAddSuccess.jsp</result>
+		
+		<action name="updateProduct"
+			class="productAction" method="updateProduct">
+		    <result name="success">/pages/productLogin.jsp</result>
+		</action>
+		<action name="productLogin"
+			class="productAction" method="productLogin">
+		    <result name="update">/pages/productAdd.jsp</result>
+		    <result name="delete">/pages/productSuccess.jsp</result>
+		    <result name="input">/pages/productLogin.jsp</result>
+		    <result name="email">/pages/productSuccess.jsp</result>
+		    <result name="error">/pages/productLogin.jsp</result>
+		</action>
+		
+		<action name="productSuccess"
+			class="productAction" method="productSuccess">
+		    <result name="success">/pages/productSuccess.jsp</result>
 		</action>
 		<action name="home"
 			class="homeAction" method="home">

@@ -30,31 +30,68 @@ public class ProductServiceImpl implements ProductService {
 		Province province = commonDao.getProvince(provinceId);
 		product.setCategory(cat);
 		product.setProvince(province);
-		product.setCreatedDate(new Date());
-		product.setFriendlyUrl(generateFriendlyUrl(product.getName()));
-		Product addedProduct = productDao.addAndLoad(product);
+		Product addedProduct;
+		List<Image> delImages = new ArrayList<Image>();
+		if (product.getProductId() > 0) {
+			product.setUpdateDate(new Date());
+			addedProduct = product;
+			productDao.update(product);
+			
+			List<Image> images = commonDao.getImagesByProductId(product.getProductId());
+			for (Image image : images) {
+				if (image != null && image.getUrl() != null && !"".equals(image.getUrl())) {
+					if (!uploadedImages.contains(getImageName(image.getUrl()))) {
+						delImages.add(image);
+						commonDao.deleteImage(image);
+					} else {
+						uploadedImages = uploadedImages.replace(getImageName(image.getUrl())  + ",", "");
+					}
+				}
+			}
+		} else {
+			product.setCreatedDate(new Date());
+			product.setFriendlyUrl(generateFriendlyUrl(product.getName()));
+			addedProduct = productDao.addAndLoad(product);
+		}
 
 		String[] images = uploadedImages.split(",");
 		String filePath = ConfigurationManager.getAsString("fileupload.path");
-		for (int i = 0; i < images.length; i++) {
-			if (images[i] != null && !"".equals(images[i])) {
-				String imageUrl = imageService
-						.processImage(filePath, images[i]);
-				Image image = new Image();
-				image.setProduct(addedProduct);
-				image.setUrl(imageUrl);
-				image.setThumbnail("");
-				image.setCreatedDate(new Date());
-				commonDao.addImage(image);
+		if (images != null) {
+			for (int i = 0; i < images.length; i++) {
+				if (images[i] != null && !"".equals(images[i])) {
+					String imageUrl = imageService
+							.processImage(filePath, images[i]);
+					Image image = new Image();
+					image.setProduct(addedProduct);
+					image.setUrl(imageUrl);
+					image.setThumbnail("");
+					image.setCreatedDate(new Date());
+					commonDao.addImage(image);
+				}
 			}
+		}
+		
+		// place at last lines for a safe transaction
+		for (Image image : delImages) {
+			imageService.deleteImage(getImageName(image.getUrl()));
 		}
 	}
 
+	public void delete(Product product) {
+		commonDao.deleteImageByProductId(product.getProductId());
+		productDao.delete(product);
+	}
+	
 	public Product getByUrl(String url) {
 		return productDao.getByUrl(url);
 	}
-	
-	public List<CrossSellProduct> findSimilar(long productId, long catId, int num) {
+
+	public Product get(long id) {
+		return productDao.get(id);
+	}
+
+	public List<CrossSellProduct> findSimilar(long productId, long catId,
+			int num) {
 		List<Product> products = productDao.findSimilar(catId, num + 1);
 		List<CrossSellProduct> result = new ArrayList<CrossSellProduct>();
 		int n = 0;
@@ -66,7 +103,8 @@ public class ProductServiceImpl implements ProductService {
 				crossSell.setDescription(product.getDescription());
 				crossSell.setFriendlyUrl(product.getFriendlyUrl());
 				crossSell.setPrice(product.getPrice());
-				List<Image> images = commonDao.getImagesByProductId(product.getProductId());
+				List<Image> images = commonDao.getImagesByProductId(product
+						.getProductId());
 				Image defaultImg = images.get(0);
 				crossSell.setDefaultThumnbail(defaultImg.getThumbnail());
 				result.add(crossSell);
@@ -75,7 +113,7 @@ public class ProductServiceImpl implements ProductService {
 		}
 		return result;
 	}
-	
+
 	public int searchTotal(String keyword, long provinceId, long catId) {
 		return productDao.searchTotal(keyword, provinceId, catId);
 	}
@@ -93,12 +131,19 @@ public class ProductServiceImpl implements ProductService {
 			return result;
 		}
 		for (Product product : products) {
-			List<Image> images = commonDao.getImagesByProductId(product.getProductId());
+			List<Image> images = commonDao.getImagesByProductId(product
+					.getProductId());
 			Image defaultImg = images.get(0);
-			SearchResult searchResult = new SearchResult(product, defaultImg.getThumbnail());
+			SearchResult searchResult = new SearchResult(product,
+					defaultImg.getThumbnail());
 			result.add(searchResult);
 		}
 		return result;
+	}
+
+	private String getImageName(String url) {
+		int idx = url.lastIndexOf("/");
+		return url.substring(idx + 1, url.length());
 	}
 
 	private String generateFriendlyUrl(String name) {

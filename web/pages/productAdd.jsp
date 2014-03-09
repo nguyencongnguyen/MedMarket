@@ -5,14 +5,21 @@
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/productAdd.js"></script>
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/ajaxfileupload.js"></script>
 <div class="content">
-<h2>Đăng sản phẩm</h2>
+<s:if test="%{uploadedImages != ''}">
+	<h2>Cập nhật sản phẩm</h2>
+</s:if>
+<s:else>
+	<h2>Đăng sản phẩm</h2>
+</s:else>
 <s:form action="/home/postProduct" method="post" id="createForm">
 <div class="error"><s:actionmessage /></div>
 <div class="left">
+<s:if test="%{uploadedImages == ''}">
     <div><span class="requried">*</span>Mật khẩu (sử dụng để cập nhật/xóa tin)</div>
     <div><s:password name="password" id="password" /></div>
     <div><span class="requried">*</span>Nhập lại mật khẩu</div>
     <div><s:password name="repassword" id="repassword" /></div>
+</s:if>
     <h3>Thông tin liên hệ</h3>
     <div><span class="requried">*</span>Tên</div>
     <div><s:textfield name="contactName" id="contactName" /></div>
@@ -42,36 +49,43 @@
     <div><span class="requried">*</span>Hình ảnh</div>
     <div id="uploadImage">
     <ul>
-    	<li>
-    		Hình 1: <input type="file" id="fileToUpload1" name="fileToUpload" class="upload" /><span id="imageName1" style="display: none;" ></span>
+    	<li id="image1">
+    		Hình 1: <input type="file" id="fileToUpload1" name="fileToUpload" class="upload" /><span id="imageName1" style="display: none;" class="uploaded"></span>
     		<img id="loading1" src="<%=request.getContextPath() %>/images/LoadingIcon.gif" width="20px" style="display: none;" class="loading" />
-    		<img id="delete1" src="<%=request.getContextPath() %>/images/delete.png" title="Xóa hình" style="display: none;" class="delUpload" /><br/>
+    		<img id="delete1" src="<%=request.getContextPath() %>/images/delete.png" title="Xóa hình" style="display: none;" class="delUpload uploaded" /><br/>
     	</li>
-    	<li>
-    		Hình 2: <input type="file" id="fileToUpload2" name="fileToUpload" class="upload" /><span id="imageName2" style="display: none;" ></span>
+    	<li id="image2">
+    		Hình 2: <input type="file" id="fileToUpload2" name="fileToUpload" class="upload" /><span id="imageName2" style="display: none;" class="uploaded"></span>
     		<img id="loading2" src="<%=request.getContextPath() %>/images/LoadingIcon.gif" width="20px" style="display: none;" class="loading" />
-    		<img id="delete2" src="<%=request.getContextPath() %>/images/delete.png" title="Xóa hình" style="display: none;" class="delUpload" /><br/>
+    		<img id="delete2" src="<%=request.getContextPath() %>/images/delete.png" title="Xóa hình" style="display: none;" class="delUpload uploaded" /><br/>
     	</li>
-    	<li>
-   	 		Hình 3: <input type="file" id="fileToUpload3" name="fileToUpload" class="upload" /><span id="imageName3" style="display: none;" ></span>
+    	<li id="image3">
+   	 		Hình 3: <input type="file" id="fileToUpload3" name="fileToUpload" class="upload" /><span id="imageName3" style="display: none;" class="uploaded" ></span>
    			<img id="loading3" src="<%=request.getContextPath() %>/images/LoadingIcon.gif" width="20px" style="display: none;" class="loading" />
-   		 	<img id="delete3" src="<%=request.getContextPath() %>/images/delete.png" title="Xóa hình" style="display: none;" class="delUpload" /><br/>
+   		 	<img id="delete3" src="<%=request.getContextPath() %>/images/delete.png" title="Xóa hình" style="display: none;" class="delUpload uploaded" /><br/>
     	</li>
-    	<li>
-    		Hình 4: <input type="file" id="fileToUpload4" name="fileToUpload" class="upload" /><span id="imageName4" style="display: none;" ></span>
+    	<li id="image4">
+    		Hình 4: <input type="file" id="fileToUpload4" name="fileToUpload" class="upload" /><span id="imageName4" style="display: none;" class="uploaded" ></span>
     		<img id="loading4" src="<%=request.getContextPath() %>/images/LoadingIcon.gif" width="20px" style="display: none;" class="loading" />
-    		<img id="delete4" src="<%=request.getContextPath() %>/images/delete.png" title="Xóa hình" style="display: none;" class="delUpload" /><br/>
+    		<img id="delete4" src="<%=request.getContextPath() %>/images/delete.png" title="Xóa hình" style="display: none;" class="delUpload uploaded" /><br/>
     	</li>
-    	<li>
-    		Hình 5: <input type="file" id="fileToUpload5" name="fileToUpload" class="upload" /><span id="imageName5" style="display: none;" ></span>
+    	<li id="image5">
+    		Hình 5: <input type="file" id="fileToUpload5" name="fileToUpload" class="upload" /><span id="imageName5" style="display: none;" class="uploaded" ></span>
     		<img id="loading5" src="<%=request.getContextPath() %>/images/LoadingIcon.gif" width="20px" style="display: none;" class="loading" />
-    		<img id="delete5" src="<%=request.getContextPath() %>/images/delete.png" title="Xóa hình" style="display: none;" class="delUpload" /><br/>
+    		<img id="delete5" src="<%=request.getContextPath() %>/images/delete.png" title="Xóa hình" style="display: none;" class="delUpload uploaded" /><br/>
     	</li>
     </ul>
-    
-    <input type="hidden" id="uploadedImages" name="uploadedImages" /></div>
+    <s:hidden id="productId" name="productId" />
+    <s:hidden id="uploadedImages" name="uploadedImages" /></div>
 	<div></div>
-	<div><input type="submit" value="Đăng sản phẩm"  /></div>
+	<div>
+		<s:if test="%{uploadedImages != ''}">
+			<input type="submit" value="Cập nhật sản phẩm"  />
+		</s:if>
+		<s:else>
+			<input type="submit" value="Đăng sản phẩm"  />
+		</s:else>
+	</div>
 	<br/>
   	
 </div>

@@ -13,16 +13,21 @@ import com.med.market.dao.model.Category;
 import com.med.market.dao.model.Image;
 import com.med.market.dao.model.Product;
 import com.med.market.dao.model.Province;
+import com.med.market.service.MailService;
 import com.med.market.util.ConfigurationManager;
 import com.med.market.util.CrossSellProduct;
+import com.med.market.util.ProductUtil;
 
 public class ProductAction extends AbstractAction {
 	private static final int NUMBER_OF_SIMILAR = 10;
     private ProductService productService;
     private CommonService commonService;
+    private MailService mailService;
     private List<Image> images;
     private List<CrossSellProduct> similar;
     private Product product;
+    private boolean update = true;
+    private String productId;
     private String url;
     private String name;
     private String password;
@@ -34,7 +39,8 @@ public class ProductAction extends AbstractAction {
     private String price;
     private String catId;
     private String provinceId;
-    private String uploadedImages;
+    private String uploadedImages = "";
+    private int msgId = 0;
     private File fileToUpload;
     private String fileToUploadContentType;
     private String fileToUploadFileName;
@@ -49,7 +55,15 @@ public class ProductAction extends AbstractAction {
     }
 
     public String postProduct() throws Exception {
-        Product product = new Product();
+    	Product product;
+    	if (productId != null && !"".equals(productId)) {
+    		product = productService.get(new Long(productId));
+    		msgId = ProductUtil.UPDATE_SUCCESS;
+    	} else {
+    		product = new Product();
+    		product.setPassword(password);
+    		msgId = ProductUtil.ADD_SUCCESS;
+    	}
         product.setName(name);
         product.setDescription(description);
         if (price != null && !"".equals(price)) {
@@ -61,13 +75,91 @@ public class ProductAction extends AbstractAction {
         product.setContactEmail(contactEmail);
         product.setContactPhone(contactPhone);
         product.setContactAddress(contactAddress);
-        product.setPassword(password);
         productService.txAdd(product, new Long(catId), new Long(provinceId), uploadedImages);
         
         return "success";
     }
     
-    public String productAddSuccess() throws Exception {
+    public String productUpdateSubmit() throws Exception {
+        provinces = commonService.getAllProvince();
+        categories = commonService.getAllCategories();
+        return "success";
+    }
+    
+    public String productSuccess() throws Exception {
+    	return "success";
+    }
+    
+    public String updateProduct() throws Exception {
+    	return "success";
+    }
+    
+    public String productLogin() throws Exception {
+    	Product product = productService.get(new Long(productId));
+    	if (product != null) {
+	    	if (password != null && !"".equals(password)) {
+	    		if (product.getPassword().equals(password)) {
+	    			if (update) {
+	    				updateProductInfo(product);
+	    				return "update";
+	    			} else {
+	    				productService.delete(product);
+	    				msgId = ProductUtil.DEL_SUCCESS;
+	    				return "delete";
+	    			}
+	    		} else {
+	    			addActionMessage("Mật khẩu không chính xác");
+	    			return "input";
+	    		}
+	    	} else {
+	    		if (contactEmail.equals(product.getContactEmail())) {
+		    		msgId = ProductUtil.SENT_EMAIL;
+		    		sendPasswordEmail(product);
+		    		return "email";
+	    		} else {
+	    			addActionMessage("Không phải email đã dùng để đăng sản phẩm");
+	    			return "input";
+	    		}
+	    	}
+    	}
+    	addActionMessage("Sản phẩm không tồn tại");
+    	return "error";
+    }
+
+    private void sendPasswordEmail(Product product) throws Exception {
+    	String subject = "Cấp lại mật khẩu cho sản phẩm: " + product.getName();
+    	String domain = ConfigurationManager.getAsString("sitedomain");
+    	String msg = "";
+		msg += "\r\nBạn đã yêu cầu cấp lại mật khẩu cho sản phẩm: " + product.getName();
+		msg += "\r\nMật khẩu là: " + product.getPassword();
+		msg += "\r\nVui lòng sử dụng mật khẩu này để cập nhật/xóa sản phẩm tại: " + domain + "/" + product.getFriendlyUrl();
+		msg += "\r\n\r\n Xin cảm ơn,";
+    	mailService.sendMail(product.getContactEmail(), subject, msg);
+    }
+    
+	private void updateProductInfo(Product product) {
+		name = product.getName();
+		description = product.getDescription();
+		contactName = product.getContactName();
+		contactEmail = product.getContactEmail();
+		contactAddress = product.getContactAddress();
+		contactPhone = product.getContactPhone();
+		price = product.getPrice() + "";
+		catId = product.getCategory().getCatId() + "";
+		provinceId = product.getProvince().getProvinceId() + "";
+		List<Image> images = commonService.getImagesByProductId(new Long(productId));
+		for (Image image : images) {
+			if (image != null && image.getUrl() != null && !"".equals(image.getUrl())) {
+				uploadedImages += getImageName(image.getUrl()) + ",";
+			}
+		}
+		
+		provinces = commonService.getAllProvince();
+		categories = commonService.getAllCategories();
+	}
+    
+    public String updatePost() throws Exception {
+    	msgId = ProductUtil.UPDATE_SUCCESS;
     	return "success";
     }
     
@@ -91,6 +183,11 @@ public class ProductAction extends AbstractAction {
     	return "success";
     }
     
+    private String getImageName(String url) {
+    	int idx = url.lastIndexOf("/");
+    	return url.substring(idx + 1, url.length());
+    }
+    
     private String generateFileName(String fileName) {
     	long time = Calendar.getInstance().getTimeInMillis();
     	if (fileName == null) {
@@ -111,6 +208,14 @@ public class ProductAction extends AbstractAction {
 		return images;
 	}
 
+	public MailService getMailService() {
+		return mailService;
+	}
+
+	public void setMailService(MailService mailService) {
+		this.mailService = mailService;
+	}
+
 	public void setImages(List<Image> images) {
 		this.images = images;
 	}
@@ -123,8 +228,32 @@ public class ProductAction extends AbstractAction {
 		return fileToUpload;
 	}
 
+	public boolean isUpdate() {
+		return update;
+	}
+
+	public void setUpdate(boolean update) {
+		this.update = update;
+	}
+
+	public int getMsgId() {
+		return msgId;
+	}
+
+	public void setMsgId(int msgId) {
+		this.msgId = msgId;
+	}
+
 	public List<CrossSellProduct> getSimilar() {
 		return similar;
+	}
+
+	public String getProductId() {
+		return productId;
+	}
+
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
 
 	public void setSimilar(List<CrossSellProduct> similar) {

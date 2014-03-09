@@ -6,6 +6,8 @@
 
 	<bean id="imageService" class="com.med.market.service.DropboxImageServiceImpl">
 	</bean>
+	<bean id="mailService" class="com.med.market.service.MailServiceImpl">
+	</bean>
 	<bean id="productService" class="com.med.market.bll.impl.ProductServiceImpl">
 		<property name="productDao" ref="productDao" />
 		<property name="commonDao" ref="commonDao" />

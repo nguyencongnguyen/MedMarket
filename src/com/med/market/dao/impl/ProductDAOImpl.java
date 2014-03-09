@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.med.market.dao.ProductDAO;
+import com.med.market.dao.model.Image;
 import com.med.market.dao.model.Product;
 
 public class ProductDAOImpl extends HibernateDaoSupport implements ProductDAO {
@@ -14,6 +15,10 @@ public class ProductDAOImpl extends HibernateDaoSupport implements ProductDAO {
 	 	return (Product) getHibernateTemplate().get(Product.class, (Long) getHibernateTemplate().save(entity));
 	}
 
+	public void update(Product entity) {
+		getHibernateTemplate().update(entity);
+	}
+	
 	public Product get(long productId) {
 		return (Product) getHibernateTemplate().get(Product.class, productId);
 	}
@@ -36,6 +41,10 @@ public class ProductDAOImpl extends HibernateDaoSupport implements ProductDAO {
         return getHibernateTemplate().find(queryString).size();
     }
 
+	public void delete(Product product) {
+		getHibernateTemplate().delete(product);
+	}
+	
 	private String buildSearch(String keyword, long provinceId, long catId) {
 		String provinceQuery = (provinceId >= 0) ? " and p.province.provinceId=" + provinceId : "";
         String catQuery = (catId >= 0) ? " and p.category.catId=" + catId : "";
