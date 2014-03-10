@@ -12,7 +12,7 @@ xsi:schemaLocation="
 
 <tx:advice id="txAdvice" transaction-manager="txManager">
     <tx:attributes>
-    	<tx:method name="txAdd"/>
+    	<tx:method name="tx*"/>
     	<tx:method name="search"/>
     	<tx:method name="searchTotal"/>
     	<tx:method name="findSimilar"/>

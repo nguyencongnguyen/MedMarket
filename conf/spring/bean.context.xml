@@ -17,4 +17,9 @@
 		<property name="commonService" ref="commonService" />
 		<property name="mailService" ref="mailService" />
 	</bean>
+	<bean id="adminAction" class="com.med.market.fo.action.AdminAction" scope="prototype">
+		<property name="productService" ref="productService" />
+		<property name="commonService" ref="commonService" />
+	</bean>
+	<bean id="loginInterceptor" class="com.med.market.fo.action.LoginInterceptor" scope="prototype"></bean>
 </beans>

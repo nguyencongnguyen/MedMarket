@@ -13,6 +13,9 @@ public class Product extends Entity {
     private String contactPhone;
     private String contactEmail;
     private String contactAddress;
+    private Boolean approve;
+    private long upTime;
+    private String upIP;
     private long price;
     private Category category;
     private Province province;
@@ -46,7 +49,31 @@ public class Product extends Entity {
         return price;
     }
 
-    public void setPrice(long price) {
+    public Boolean getApprove() {
+		return approve;
+	}
+
+	public void setApprove(Boolean approve) {
+		this.approve = approve;
+	}
+
+	public long getUpTime() {
+		return upTime;
+	}
+
+	public void setUpTime(long upTime) {
+		this.upTime = upTime;
+	}
+
+	public String getUpIP() {
+		return upIP;
+	}
+
+	public void setUpIP(String upIP) {
+		this.upIP = upIP;
+	}
+
+	public void setPrice(long price) {
         this.price = price;
     }
 

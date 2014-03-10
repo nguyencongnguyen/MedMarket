@@ -42,7 +42,8 @@
 	</div>
 </div>
 <div class="infoDetail">
-	<br/><s:property value="product.description"/><br/>
+	<br/>Thông tin sản phẩm:<br/><br/>
+	<s:property value="product.description"/><br/>
 </div>
 <s:if test="%{similar.size() > 1}">
 	<div class="left" style="width: 100%; margin-top: 30px;"><p>Có thể bạn quan tâm:</div>

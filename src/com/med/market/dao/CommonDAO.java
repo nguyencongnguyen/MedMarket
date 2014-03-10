@@ -17,6 +17,8 @@ public interface CommonDAO {
 
 	public void addImage(Image entity);
 	
+	public void updateImage(Image entity);
+	
 	public List<Image> getImagesByProductId(long productId);
 	
 	public void deleteImage(Image image);

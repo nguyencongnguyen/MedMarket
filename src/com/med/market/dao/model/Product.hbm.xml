@@ -34,6 +34,15 @@
         <property name="contactAddress" type="string">
             <column name="CONTACT_ADDRESS" length="250" />
         </property>
+        <property name="upTime" type="java.lang.Long">
+            <column name="UP_TIME" length="250" />
+        </property>
+        <property name="upIP" type="string">
+            <column name="UP_IP" length="20" />
+        </property>
+        <property name="approve" type="boolean">
+            <column name="APPROVE" not-null="true" />
+        </property>
         <many-to-one name="category" class="com.med.market.dao.model.Category" lazy="false" fetch="select">
             <column name="CAT_ID" not-null="true" />
         </many-to-one>

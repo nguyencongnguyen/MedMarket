@@ -31,6 +31,10 @@ public class CommonDAOImpl extends HibernateDaoSupport implements CommonDAO {
 	 	getHibernateTemplate().save(entity);
 	}
     
+    public void updateImage(Image entity) {
+	 	getHibernateTemplate().update(entity);
+	}
+    
     public List<Image> getImagesByProductId(long productId) {
     	return getHibernateTemplate().find("from Image i where i.product.productId = " + productId + " order by i.imgId asc");
     }

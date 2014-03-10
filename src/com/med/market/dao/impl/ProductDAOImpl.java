@@ -24,11 +24,11 @@ public class ProductDAOImpl extends HibernateDaoSupport implements ProductDAO {
 	}
 	
 	public Product getByUrl(String url) {
-		return (Product) getHibernateTemplate().find("from Product p where p.friendlyUrl = '" + url +"'").get(0);
+		return (Product) getHibernateTemplate().find("from Product p where p.approve=1 and p.friendlyUrl = '" + url +"'").get(0);
 	}
 
 	public List<Product> findSimilar(long catId, int num) {
-		String queryString = "from Product p where p.category.catId=:catId order by RAND()";
+		String queryString = "from Product p where p.approve=1 and p.category.catId=:catId order by RAND()";
 		Query query = getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery(queryString);
 		query.setParameter("catId", catId);
 		query.setFirstResult(0);
@@ -48,9 +48,9 @@ public class ProductDAOImpl extends HibernateDaoSupport implements ProductDAO {
 	private String buildSearch(String keyword, long provinceId, long catId) {
 		String provinceQuery = (provinceId >= 0) ? " and p.province.provinceId=" + provinceId : "";
         String catQuery = (catId >= 0) ? " and p.category.catId=" + catId : "";
-        String queryString = "from Product p where (p.name like '%" + keyword + "%' or p.description like '%" + keyword + "%')" + provinceQuery + catQuery;
+        String queryString = "from Product p where p.approve=1 and (p.name like '%" + keyword + "%' or p.description like '%" + keyword + "%')" + provinceQuery + catQuery;
         if (keyword == null || "".equals(keyword)) {
-            queryString = "from Product p where 1=1" + provinceQuery + catQuery;
+            queryString = "from Product p where p.approve=1 and 1=1" + provinceQuery + catQuery;
         }
 		return queryString;
 	}
@@ -62,4 +62,10 @@ public class ProductDAOImpl extends HibernateDaoSupport implements ProductDAO {
         query.setMaxResults(pageSize);
         return (List<Product>) query.list();
     }
+    
+    public List<Product> getUnApprovedProducts() {
+    	String queryString = "from Product p where p.approve=0 order by p.createdDate asc";
+		Query query = getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery(queryString);
+		return (List<Product>) query.list();
+	}
 }

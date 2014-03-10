@@ -14,4 +14,6 @@ public interface ProductService {
 	public Product get(long id);
 	public List<CrossSellProduct> findSimilar(long productId, long catId, int num);
 	public void delete(Product product);
+	public void txApprove(Product product) throws Exception;
+	public List<Product> txGetUnApprovedProducts();
 }

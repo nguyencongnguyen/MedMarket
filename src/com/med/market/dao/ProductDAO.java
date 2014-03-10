@@ -13,4 +13,5 @@ public interface ProductDAO {
 	public List<Product> search(String keyword, int startIndex, int pageSize, long provinceId, long catId);
 	public List<Product> findSimilar(long catId, int num);
 	public void delete(Product product);
+	public List<Product> getUnApprovedProducts();
 }

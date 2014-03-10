@@ -55,7 +55,7 @@ public class SearchResult {
 		this.friendlyUrl = friendlyUrl;
 	}
 	public String getDescription() {
-		return description;
+		return (description.length() > 500) ? description.substring(0, 500) : description;
 	}
 	public void setDescription(String description) {
 		this.description = description;

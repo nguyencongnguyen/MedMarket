@@ -42,8 +42,8 @@ public class SearchAction extends AbstractAction {
         }
         provinces.add(new Province(-1, "Tất cả"));
         categories.add(new Category(-1, "Tất cả"));
-        provinces = commonService.getAllProvince();
-        categories = commonService.getAllCategories();
+        provinces.addAll(commonService.getAllProvince());
+        categories.addAll(commonService.getAllCategories());
 
         int total = productService.searchTotal(keyword, provinceId, catId);
         totalPage = (total % RESULT_PER_PAGE == 0) ? total/RESULT_PER_PAGE : total/RESULT_PER_PAGE + 1;

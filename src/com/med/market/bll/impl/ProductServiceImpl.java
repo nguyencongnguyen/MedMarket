@@ -51,6 +51,9 @@ public class ProductServiceImpl implements ProductService {
 		} else {
 			product.setCreatedDate(new Date());
 			product.setFriendlyUrl(generateFriendlyUrl(product.getName()));
+			product.setApprove(false);
+			product.setUpTime(Calendar.getInstance().getTimeInMillis());
+			product.setUpIP("");
 			addedProduct = productDao.addAndLoad(product);
 		}
 
@@ -64,7 +67,12 @@ public class ProductServiceImpl implements ProductService {
 					Image image = new Image();
 					image.setProduct(addedProduct);
 					image.setUrl(imageUrl);
-					image.setThumbnail("");
+					if (product.getProductId() > 0) {
+						String thumbnail = imageService.createThumbnail(getImageName(imageUrl), filePath);
+						image.setThumbnail(thumbnail);
+					} else {
+						image.setThumbnail("");
+					}
 					image.setCreatedDate(new Date());
 					commonDao.addImage(image);
 				}
@@ -80,6 +88,16 @@ public class ProductServiceImpl implements ProductService {
 	public void delete(Product product) {
 		commonDao.deleteImageByProductId(product.getProductId());
 		productDao.delete(product);
+	}
+	
+	public void txApprove(Product product) throws Exception {
+		productDao.update(product);
+		List<Image> images = commonDao.getImagesByProductId(product.getProductId());
+		for (Image image : images) {
+			String thumbnail = imageService.createThumbnail(getImageName(image.getUrl()), ConfigurationManager.getAsString("fileupload.path"));
+			image.setThumbnail(thumbnail);
+			commonDao.updateImage(image);
+		}
 	}
 	
 	public Product getByUrl(String url) {
@@ -124,7 +142,11 @@ public class ProductServiceImpl implements ProductService {
 				pageSize, provinceId, catId);
 		return convertSearchResult(products);
 	}
-
+	
+	public List<Product> txGetUnApprovedProducts() {
+		return productDao.getUnApprovedProducts();
+	}
+	
 	private List<SearchResult> convertSearchResult(List<Product> products) {
 		List<SearchResult> result = new ArrayList<SearchResult>();
 		if (products == null || products.size() == 0) {
