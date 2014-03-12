@@ -3,12 +3,8 @@
         "http://tuckey.org/res/dtds/urlrewrite3.0.dtd">
 <urlrewrite>
     <rule>
-        <from>^(/|/home)(/|)$</from>
-        <to>/home.action</to>
-    </rule>
-    <rule>
         <from>^(/|/home)$</from>
-        <to>/main/home.action</to>
+        <to>/main/search.action</to>
     </rule>
     <rule>
         <from>^/home/(\w*(\-?\w*)*)$</from>

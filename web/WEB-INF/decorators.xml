@@ -1,4 +1,7 @@
 <decorators defaultdir="/template">
+	<excludes> 
+		<pattern>/free/*</pattern>
+	</excludes>
     <decorator name="home" page="main.jsp">
         <pattern>/home/*</pattern>
     </decorator>

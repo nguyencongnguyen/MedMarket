@@ -138,8 +138,6 @@ input[type=text].age {
 #content {
 	width: 940px;
 	margin: 0 auto 15px auto;
-	zbackground-color: #FFF;
-	padding: 10px;
 	min-height: 300px;
 }
 .topContent {
@@ -165,7 +163,7 @@ input[type=text].age {
 }
 #searchBox {
 	background: none repeat scroll 0 0 #DFECED;
-	height: 130px;
+	height: 120px;
 	width: 600px;
 	float: left;
 }
@@ -310,7 +308,12 @@ input[type=text].age {
     padding: 20px 0 0 120px;
     font-family: arial;
 }
-
+#catList {
+	width: 940px;
+	height: 35px;
+	margin: 0 auto;
+	sbackground-color: #E0E0E0;
+}
 .boxHeader {
 	background-color: #4682B2;
 	width: 100%;

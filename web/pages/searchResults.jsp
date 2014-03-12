@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <link href="<%= request.getContextPath() %>/css/product.css" rel="stylesheet" type="text/css" />
-
+<jsp:include page="include/topCats.jsp"></jsp:include>
 <div class="left left-content">
 	<div id="searchBox">
 		<div class="searchForm">
@@ -16,29 +16,31 @@
 		</div>
 	</div>
 	<div class="searchResult">
-		<div class="seachHeading">Kết quả tìm kiếm</div>
+		<div class="seachHeading"></div>
 		<div class="resultList">
 			<s:if test="%{result.size() > 0}">
 				<ul>
 				<s:iterator value="result" status="product" id="aProduct">
 					<li>
 						<div class="left">
-							<img src='<s:property value="defaultThumnbail"/>' width="100" />
+							<a href='/<s:property value="friendlyUrl"/>' >
+								<img src='<s:property value="defaultThumnbail"/>' width="120" />
+							</a><br />
+							<div class="itemTitle price">
+	                            <s:if test="%{price > 0}">
+								    <s:property value="@com.med.market.fo.action.SearchAction@formatPrice(price)"/>
+	                            </s:if>
+	                            <s:else>
+	                                Call
+	                            </s:else>
+                            </div>
 						</div>
-						<div class="left" style="width: 440px">
+						<div class="left" style="width: 400px">
 							<a href='/<s:property value="friendlyUrl"/>' >
 							<s:property value="name"/></a>
 							<br />
-                            Giá:
-                            <s:if test="%{price > 0}">
-							    <s:property value="price"/><br />
-                            </s:if>
-                            <s:else>
-                                Call<br />
-                            </s:else>
-							Loại sản phẩm: <s:property value="categoryName"/><br />
-							Phạm vi giao dịch: <s:property value="provinceName"/><br />
-							<div class="info"><s:property value="description"/></div>
+							<span class="itemTitle">Loại sản phẩm: <s:property value="categoryName"/></span><br />
+							<div class="info"><s:property value="description"/></div><br />
 							<div><a href='/<s:property value="friendlyUrl"/>' class="button">Xem chi tiết</a></div>
 						</div>
 					</li>

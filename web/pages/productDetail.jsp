@@ -4,7 +4,7 @@
 <link href="<%= request.getContextPath() %>/css/product.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/product.js"></script>
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/jcarousellite_1.0.1.js"></script> 
-
+<jsp:include page="include/breadcrum.jsp"></jsp:include>
 <div class="left left-content">
 	<div class="image">
 		<div class="imageContainer"><img id="productImage" src="" width="300" /></div>

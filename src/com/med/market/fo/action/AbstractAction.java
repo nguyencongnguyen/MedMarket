@@ -7,4 +7,5 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class AbstractAction extends ActionSupport {
 	public Log log = LogFactory.getLog(AbstractAction.class);
+	
 }

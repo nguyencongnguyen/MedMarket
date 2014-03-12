@@ -90,7 +90,6 @@
 			class="searchAction" method="search">
 		    <result name="success">/pages/searchResults.jsp</result>
 		</action>
-		
 		<action name="login"
 			class="homeAction" method="login">
 		    <result name="success">/pages/login.jsp</result>
@@ -110,6 +109,12 @@
 		    <result type="json">
 		    	<param name="root">jsonData</param>
 		    </result>
+		</action>
+	</package>
+	<package name="free" namespace="/free" extends="struts-default">
+		<action name="showTopNew"
+			class="searchAction" method="showTopNew">
+		    <result name="success">/pages/topNew.jsp</result>
 		</action>
 	</package>
 </struts>

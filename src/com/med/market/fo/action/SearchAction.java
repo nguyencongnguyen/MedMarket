@@ -1,12 +1,12 @@
 package com.med.market.fo.action;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.med.market.bll.service.CommonService;
 import com.med.market.bll.service.ProductService;
 import com.med.market.dao.model.Category;
-import com.med.market.dao.model.Product;
 import com.med.market.dao.model.Province;
 import com.med.market.util.SearchResult;
 
@@ -24,6 +24,7 @@ public class SearchAction extends AbstractAction {
     private int totalPage;
     private int begin;
     private int end;
+    private List<Category> topCats = new ArrayList<Category>();
 
     public String getSearch() {
         provinces = commonService.getAllProvince();
@@ -53,6 +54,11 @@ public class SearchAction extends AbstractAction {
         end = ((page + 7) < totalPage) ? page + 7 : totalPage;
         return "success";
     }
+    
+    public String showTopNew() {
+    	result = productService.search("", 0, 15, -1, -1);
+    	return "success";
+    }
 
     public static String addPageParam(String url) {
         if (url.contains("page=")) {
@@ -61,6 +67,19 @@ public class SearchAction extends AbstractAction {
         return url.contains("?") ? url + "&page=" : url + "?page=";
     }
 
+    public static String formatPrice(long price) {
+    	DecimalFormat df = new DecimalFormat("###,###,### VND");
+    	return df.format(price);
+    }
+    
+    public List<Category> getTopCats() {
+		return commonService.getAllCategories();
+	}
+
+	public void setTopCats(List<Category> topCats) {
+		this.topCats = topCats;
+	}
+	
     public ProductService getProductService() {
         return productService;
     }

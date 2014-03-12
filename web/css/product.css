@@ -42,9 +42,18 @@
 	list-style: none;
 	width: 580px;
 	margin-bottom: 10px;
-    padding-bottom: 10px;
 	float: left;
 	background: url("../images/separator.gif") no-repeat scroll center bottom rgba(0, 0, 0, 0);
+}
+.price {
+	width: 100%;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	color: red !important;
+}
+.itemTitle {
+	color: #000000;
 }
 .resultList ul li:last-child {
 	zbackground: none repeat scroll 0 center rgba(0, 0, 0, 0);
@@ -107,4 +116,36 @@
 .next, .prev {
 	float: left;
 	margin-top: 30px;
+}
+
+#catList ul {
+	margin: 0;
+	padding: 0;
+}
+#catList ul li {
+	float: left;
+	list-style: none;
+	border-right: 1px solid #B0B0B0;
+	padding: 2px 10px;
+}
+#catList ul li:first-child {
+	padding: 2px 10px 2px 0 !important;
+}
+#catList ul li:last-child {
+	border-right: none;
+}
+
+#breadcrum ul {
+	margin: 0;
+	padding: 0 0 30px 0;
+}
+#breadcrum ul li {
+	float: left;
+	list-style: none;
+	margin-right: 8px;
+}
+li.arrow {
+	background: url("../images/sprites.png") no-repeat scroll -7px -1320px rgba(0, 0, 0, 0);
+	width: 10px;
+	height: 20px;
 }

@@ -23,7 +23,7 @@
 	</div>
 	<div id="aggregateHeaderWrapper">
 		<div id="aggregateHeader">
-			<h2>ĐẶT HẸN KHÁM BỆNH</h2>
+			<h2>RAO VẶT Y KHOA</h2>
 		</div>
 	</div>
 	<div id="content">
