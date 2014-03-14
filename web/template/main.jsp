@@ -9,6 +9,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="description" content="Đặt hẹn khám bệnh trực tuyến, cung cấp dịch vụ hẹn khám trực tuyến miễn phí" />
 	<meta name="keywords" content="đặt chỗ khám bệnh, hẹn khám bệnh, hẹn khám trực tuyến, hẹn khám miễn phí" />
+	<link rel="icon" href="<%= request.getContextPath() %>/images/favicon.png" type="image/png"/>
 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery.min.js"></script>
     <link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet" type="text/css" />
   	<decorator:head />

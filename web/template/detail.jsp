@@ -7,6 +7,7 @@
  <head>
  	<title><decorator:title default="Hẹn khám trực tuyến" /></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="icon" href="<%= request.getContextPath() %>/images/favicon.png" type="image/png"/>
 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery.min.js"></script>
     <link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet" type="text/css" />
   	<decorator:head />
