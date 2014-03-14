@@ -39,7 +39,10 @@ $(document).ready(function() {
             },
             uploadedImages: {
             	required: true
-            }
+            }, 
+			accept: {
+				required: true
+			}
         },
         messages: {
             username: {
@@ -77,7 +80,8 @@ $(document).ready(function() {
             },
             uploadedImages: {
             	required: "Bạn cần phải đăng ít nhất 1 hình ảnh của sản phẩm"
-            }
+            },
+			accept: "Bạn phải đồng ý với các điều khoản"
         },
         submitHandler: function(form) {
         	$(".upload").attr("disabled", "disabled");
@@ -134,4 +138,8 @@ $(document).ready(function() {
     		}
     	}
     }
+    
+    $("#viewRules").click(function() {
+		$("#rules").slideDown();
+	});
 });

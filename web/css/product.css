@@ -149,3 +149,17 @@ li.arrow {
 	width: 10px;
 	height: 20px;
 }
+
+.productInfo {
+	float: left;
+	width: 920px;
+	background-color: #FFFFFF;
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 0 1px 1px 0 #AAAAAA;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.productInfo label {
+	font-weight: bold;
+}

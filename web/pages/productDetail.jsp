@@ -4,8 +4,13 @@
 <link href="<%= request.getContextPath() %>/css/product.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/product.js"></script>
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/jcarousellite_1.0.1.js"></script> 
+
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "ae8ccf5f-b83a-41ea-9bf6-a27e07297edd", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+
 <jsp:include page="include/breadcrum.jsp"></jsp:include>
-<div class="left left-content">
+<div class="left left-content productInfo">
 	<div class="image">
 		<div class="imageContainer"><img id="productImage" src="" width="300" /></div>
 		<div class="imageList">
@@ -29,24 +34,33 @@
         Loại sản phẩm: <s:property value="product.category.name"/><br />
 		Phạm vi giao dịch: <s:property value="product.province.name"/><br />
 		<br/>
-		<b>Liên hệ:</b><br/>
+		<label>Liên hệ:</label><br/>
 		Người liên hệ: <s:property value="product.contactName"/><br/>
 		Điện thoại: <s:property value="product.contactPhone"/><br/>
 		Email: <s:property value="product.contactEmail"/><br/>
 		<s:if test="%{product.contactAddress != ''}">
 		Địa chỉ: <s:property value="product.contactAddress"/><br/>
 		</s:if>
+		<br/>
+			<span class='st_sharethis_large' displayText='ShareThis'></span>
+			<span class='st_facebook_large' displayText='Facebook'></span>
+			<span class='st_twitter_large' displayText='Tweet'></span>
+			<span class='st_linkedin_large' displayText='LinkedIn'></span>
+			<span class='st_pinterest_large' displayText='Pinterest'></span>
+			<span class='st_email_large' displayText='Email'></span>
 		<br/><br/>
 		<a class="button" href='/home/updateProduct?update=true&productId=<s:property value="product.productId"/>'>Cập nhật tin</a>&nbsp;&nbsp;
 		<a class="button" href='/home/updateProduct?update=false&productId=<s:property value="product.productId"/>'>Xóa tin</a>
 	</div>
-</div>
-<div class="infoDetail">
-	<br/>Thông tin sản phẩm:<br/><br/>
-	<s:property value="product.description"/><br/>
+
+	<div class="infoDetail">
+		<br/><label>Thông tin sản phẩm:</label><br/><br/>
+		<s:property value="product.description"/><br/>
+	</div>
 </div>
 <s:if test="%{similar.size() > 1}">
-	<div class="left" style="width: 100%; margin-top: 30px;"><p>Có thể bạn quan tâm:</div>
+	<div class="productInfo">
+	<div class="left" style="width: 100%; margin-top: 10px;"><label>Có thể bạn quan tâm:</label></div>
 	<div class='prev'><img src="<%= request.getContextPath() %>/images/carPrev-on.png" /></div>
 	<div id="similar">
 		<ul>
@@ -63,5 +77,5 @@
 		</ul>
 	</div>
 	<div class='next'><img src="<%= request.getContextPath() %>/images/carouNext-on.png" /></div>
+	</div>
 </s:if>
-<jsp:include page="include/right-ads.jsp"></jsp:include>
