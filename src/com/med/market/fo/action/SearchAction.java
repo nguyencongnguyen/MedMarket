@@ -56,7 +56,7 @@ public class SearchAction extends AbstractAction {
     }
     
     public String showTopNew() {
-    	result = productService.search("", 0, 15, -1, -1);
+    	result = productService.search("", 0, 10, -1, -1);
     	return "success";
     }
 

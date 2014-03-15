@@ -13,6 +13,7 @@ import com.med.market.dao.model.Province;
 
 public class HomeAction extends AbstractAction {
     private ProductService productService;
+    private CommonService commonService;
     private long catId;
     private long provinceId;
     private List<Province> provinces;
