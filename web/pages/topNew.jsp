@@ -7,13 +7,13 @@
 <link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body style="">
-<div style="width: 940px; float: left;">
+<div style="width: 785px; float: left; background-color: #FFF;">
 	<s:if test="%{result.size() > 0}">
-		<ul>
+		<ul style="margin: 0;">
 		<s:iterator value="result" status="product" id="aProduct">
 			<li style="list-style:none; float: left; text-align: center; margin: 5px; width: 140px; padding: 5px;">
 				<div class="left">
-					<div style="height: 140px; width: 140px; background-color: #FFF; border: 1px solid #DDD;">
+					<div style="height: 140px; width: 140px; background-color: #FFF;">
 					<a href='/<s:property value="friendlyUrl"/>' >
 						<img src='<s:property value="defaultThumnbail"/>' width="100" alt='<s:property value="name"/>' title='<s:property value="description"/>' />
 					</a><br />

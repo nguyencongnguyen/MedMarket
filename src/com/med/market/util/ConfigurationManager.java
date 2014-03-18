@@ -45,6 +45,11 @@ public class ConfigurationManager {
 		list.put(file, properties);
 	}*/
 
+	public static String getObUrl() {
+		Properties properties = load();
+		return properties.getProperty("ob.site.domain");
+	}
+	
 	public static String getAsString(String name) {
 		Properties properties = load();
 		return properties.getProperty(name);

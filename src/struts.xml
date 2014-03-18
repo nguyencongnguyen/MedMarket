@@ -12,12 +12,14 @@
 
 	<package name="main" namespace="/" extends="struts-default,json-default">
 		<interceptors>
+		  <interceptor name="commonInterceptor" class="commonInterceptor" />
 		  <interceptor name="checklogin" class="loginInterceptor" />
 		  <interceptor-stack name="defaultLoginStack">
 			<interceptor-ref name="defaultStack">
 		     	<param name="exception.logEnabled">true</param>
 		    	<param name="exception.logLevel">ERROR</param>
 		    </interceptor-ref>
+		    <interceptor-ref name="commonInterceptor" />
 			<interceptor-ref name="checklogin" />
 		  </interceptor-stack>
 		  <interceptor-stack name="appDefaultStack">
@@ -25,6 +27,7 @@
 		     <param name="exception.logEnabled">true</param>
 		     <param name="exception.logLevel">ERROR</param>
 		    </interceptor-ref>
+		    <interceptor-ref name="commonInterceptor" />
 		 </interceptor-stack>
 		</interceptors>
 		
@@ -109,6 +112,14 @@
 		    <result type="json">
 		    	<param name="root">jsonData</param>
 		    </result>
+		</action>
+		<action name="contact"
+			class="homeAction" method="contact" >
+		    <result name="success">/pages/contact.jsp</result>
+		</action>
+		<action name="contactSubmit"
+			class="homeAction" method="contactSubmit" >
+		    <result name="success">/pages/contactSuccess.jsp</result>
 		</action>
 	</package>
 	<package name="free" namespace="/free" extends="struts-default">

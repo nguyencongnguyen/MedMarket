@@ -10,10 +10,14 @@ import com.med.market.bll.service.CommonService;
 import com.med.market.bll.service.ProductService;
 import com.med.market.dao.model.Category;
 import com.med.market.dao.model.Province;
+import com.med.market.service.MailService;
+import com.med.market.util.CommonUtil;
+import com.med.market.util.ConfigurationManager;
 
 public class HomeAction extends AbstractAction {
     private ProductService productService;
     private CommonService commonService;
+    private MailService mailService;
     private long catId;
     private long provinceId;
     private List<Province> provinces;
@@ -21,6 +25,10 @@ public class HomeAction extends AbstractAction {
     private String keyword;
     private String username;
     private String password;
+    private String name;
+	private String email;
+	private String body;
+	private String captcha;
 
     public String home() {
         provinces = commonService.getAllProvince();
@@ -42,6 +50,17 @@ public class HomeAction extends AbstractAction {
 		}
 	}
 
+    public String contact() throws Exception {
+		return "success";
+	}
+	
+	public String contactSubmit() throws Exception {
+		if (CommonUtil.checkCaptcha(ServletActionContext.getRequest().getSession(), captcha)) {
+			mailService.sendMail(ConfigurationManager.getAsString("username"), name + "(" + email + ")", body);
+		}
+		return "success";
+	}
+	
     public String commonError() throws Exception {
 		return "error";
 	}
@@ -54,7 +73,47 @@ public class HomeAction extends AbstractAction {
         this.productService = productService;
     }
 
-    public CommonService getCommonService() {
+    public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public MailService getMailService() {
+		return mailService;
+	}
+
+	public void setMailService(MailService mailService) {
+		this.mailService = mailService;
+	}
+
+	public String getCaptcha() {
+		return captcha;
+	}
+
+	public void setCaptcha(String captcha) {
+		this.captcha = captcha;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getBody() {
+		return body;
+	}
+
+	public void setBody(String body) {
+		this.body = body;
+	}
+
+	public CommonService getCommonService() {
         return commonService;
     }
 

@@ -77,6 +77,30 @@ a.button {
     text-decoration: none;
     text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
 }
+a.button-org {
+	-moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: #F5983B;
+    border-bottom-color: rgba(0,0,0,0.2);
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: none none solid;
+    border-width: 0 0 1px;
+    box-shadow: 0 1px 1px rgba(50, 50, 50, 0.15);
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 12px;
+    outline: 0 none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+}
 input[type=text].age {
 	width: 80px;
 }
@@ -198,7 +222,7 @@ input[type=text].age {
     border-right: 1px solid #E7E7E7;
 }
 
-#top-nav-menu li.first + li, #top-nav-menu li.first, #top-nav-menu li.first + li + li, #top-nav-menu li.first + li + li + li {
+#top-nav-menu li.first + li, #top-nav-menu li.first, #top-nav-menu li.first + li + li {
     float: left;
 }
 

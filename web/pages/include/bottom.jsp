@@ -14,8 +14,8 @@
    	</div>
    	<div class="right">
 		<ul>
-			<li><div class="fb-like" data-href="http://www.dathenkhambenh.com" data-width="60" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div></li>
-			<li><a href="/home/about">Giới thiệu</a> |</li>
+			<li><div class="fb-like" data-href='<%=request.getSession().getAttribute("obUrl") %>' data-width="60" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div></li>
+			<li><a href='<%=request.getSession().getAttribute("obUrl") %>' rel="nofollow">Dịch vụ hẹn khám</a> |</li>
 			<li><a href="/home/contact" rel="nofollow">Liên hệ</a></li>
 		</ul>		
 		<div class="right">

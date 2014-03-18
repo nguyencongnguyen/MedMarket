@@ -1,0 +1,16 @@
+.left-content {
+	float: left;
+	width: 640px;	
+}
+
+.right-ads {
+	background: none repeat scroll 0 0 #EFEFEF;
+    float: left;
+    height: 250px;
+    margin-bottom: 30px;
+    padding-top: 40px;
+    width: 300px;
+    text-align: center;
+    font-size: 22px;
+    color: #808080;
+}

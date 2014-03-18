@@ -149,7 +149,9 @@ li.arrow {
 	width: 10px;
 	height: 20px;
 }
-
+.productName {
+	font-size: 16px;
+}
 .productInfo {
 	float: left;
 	width: 920px;

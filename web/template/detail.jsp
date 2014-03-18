@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
  <head>
@@ -17,7 +16,11 @@
     <div id="bannerContainer">    	    
 		<div class="banner">
 			<a href="<%=request.getContextPath() %>/home"><img src="<%= request.getContextPath() %>/images/logo.png" class="mainLogo" /></a>
-			<img src="<%= request.getContextPath() %>/images/hospital_banner.jpg" class="mainBanner" />
+			<div style="float: right; background-color: #FFF; width: 300px; height: 150px; padding: 20px;">
+				<div style="color: #F5983B; font-size: 18px; font-weight: bold;">Chuyên trang rao vặt y khoa.</div>
+				<p style="font-size: 15px;">Chuyên trang rao vặt các loại sản phẩm, máy móc, dịch vụ y khoa với đa dạng các danh mục.</p>
+				<a href="/home/addProduct" class="button">Đăng tin miễn phí</a>
+			</div>
 		</div>
 	</div>
 	<div id="aggregateHeaderWrapper">
@@ -28,6 +31,7 @@
 	<div id="content">
         <decorator:body />
     </div>
-    <jsp:include page="../pages/include/bottom.jsp"></jsp:include>	
+
+	<jsp:include page="../pages/include/bottom.jsp" />
   </body>
 </html>

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <link href="<%= request.getContextPath() %>/css/product.css" rel="stylesheet" type="text/css" />
+<link href="<%= request.getContextPath() %>/css/right-ads.css" rel="stylesheet" type="text/css" />
 <jsp:include page="include/topCats.jsp"></jsp:include>
 <div class="left left-content">
 	<div id="searchBox">
@@ -35,13 +36,13 @@
 	                            </s:else>
                             </div>
 						</div>
-						<div class="left" style="width: 400px">
-							<a href='/<s:property value="friendlyUrl"/>' >
+						<div class="left" style="width: 400px; margin-bottom: 20px;">
+							<a class="productName" href='/<s:property value="friendlyUrl"/>' >
 							<s:property value="name"/></a>
 							<br />
 							<span class="itemTitle">Loại sản phẩm: <s:property value="categoryName"/></span><br />
 							<div class="info"><s:property value="description"/></div><br />
-							<div><a href='/<s:property value="friendlyUrl"/>' class="button">Xem chi tiết</a></div>
+							<div><a href='/<s:property value="friendlyUrl"/>' class="button-org">Xem chi tiết</a></div>
 						</div>
 					</li>
 				</s:iterator>

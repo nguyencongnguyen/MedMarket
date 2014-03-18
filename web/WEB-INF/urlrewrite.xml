@@ -7,6 +7,14 @@
         <to>/main/search.action</to>
     </rule>
     <rule>
+        <from>^/free/(\w*(\-?\w*)*)$</from>
+        <to>/free/$1.action</to>
+    </rule>
+    <rule>
+        <from>^/free/(\w*(\-?\w*)*)\?(.*)$</from>
+        <to>/free/$1.action?$2</to>
+    </rule>
+    <rule>
         <from>^/home/(\w*(\-?\w*)*)$</from>
         <to>/main/$1.action</to>
     </rule>
