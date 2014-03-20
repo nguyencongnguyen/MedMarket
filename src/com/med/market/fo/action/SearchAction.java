@@ -8,6 +8,7 @@ import com.med.market.bll.service.CommonService;
 import com.med.market.bll.service.ProductService;
 import com.med.market.dao.model.Category;
 import com.med.market.dao.model.Province;
+import com.med.market.util.ConfigurationManager;
 import com.med.market.util.SearchResult;
 
 public class SearchAction extends AbstractAction {
@@ -24,6 +25,7 @@ public class SearchAction extends AbstractAction {
     private int totalPage;
     private int begin;
     private int end;
+    private String domain;
     private List<Category> topCats = new ArrayList<Category>();
 
     public String getSearch() {
@@ -57,6 +59,7 @@ public class SearchAction extends AbstractAction {
     
     public String showTopNew() {
     	result = productService.search("", 0, 10, -1, -1);
+    	domain = ConfigurationManager.getAsString("sitedomain");
     	return "success";
     }
 
@@ -96,7 +99,15 @@ public class SearchAction extends AbstractAction {
         this.commonService = commonService;
     }
 
-    public long getCatId() {
+    public String getDomain() {
+		return domain;
+	}
+
+	public void setDomain(String domain) {
+		this.domain = domain;
+	}
+
+	public long getCatId() {
         return catId;
     }
 

@@ -45,8 +45,8 @@
     <div><span class="requried">*</span>Phạm vi giao dịch</div>
     <div><s:select list="provinces" name="provinceId" id="provinceId" listKey="provinceId" listValue="name"></s:select></div>
     <div><br/><span class="requried">*</span>Thông tin mô tả sản phẩm</div>
-    <div><s:textarea name="description" id="description" rows="7" cols="50" maxlength="4000"></s:textarea></div>
-    <div><span class="requried">*</span>Hình ảnh</div>
+    <div><s:textarea name="description" id="description" rows="7" cols="50" maxlength="4000"></s:textarea></div><br/>
+    <div><span class="requried">*</span>Hình ảnh (kích thước tối đa 2Mb)</div>
     <div id="uploadImage">
     <ul>
     	<li id="image1">
