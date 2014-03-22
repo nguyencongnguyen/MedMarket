@@ -1,14 +1,21 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<link href="<%= request.getContextPath() %>/css/product.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<%= request.getContextPath() %>/js/product.js"></script>
-<script type="text/javascript" src="<%= request.getContextPath() %>/js/jcarousellite_1.0.1.js"></script> 
-
-<script type="text/javascript">var switchTo5x=true;</script>
-<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript">stLight.options({publisher: "ae8ccf5f-b83a-41ea-9bf6-a27e07297edd", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
-
+<html>
+<head>
+	<title>Rao vặt y khoa - <s:property value="product.name"/></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="description" content='<s:property value="product.name"/> <s:property value="product.category.name"/>' />
+	<meta name="keywords" content='Rao vặt,y khoa,<s:property value="@com.med.market.util.CommonUtil@genKeyword(product.name)"/>' />
+	<link href="<%= request.getContextPath() %>/css/product.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<%= request.getContextPath() %>/js/product.js"></script>
+	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jcarousellite_1.0.1.js"></script> 
+	
+	<script type="text/javascript">var switchTo5x=true;</script>
+	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+	<script type="text/javascript">stLight.options({publisher: "ae8ccf5f-b83a-41ea-9bf6-a27e07297edd", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+</head>
+<body>
 <jsp:include page="include/breadcrum.jsp"></jsp:include>
 <div class="left left-content productInfo">
 	<div class="image">
@@ -79,3 +86,5 @@
 	<div class='next'><img src="<%= request.getContextPath() %>/images/carouNext-on.png" /></div>
 	</div>
 </s:if>
+</body>
+</html>

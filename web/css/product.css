@@ -111,7 +111,10 @@
 #similar ul li {
 	float: left;
 	list-style: none;
-	margin: 5px;
+	margin: 0px;
+	padding: 10px;
+	min-width: 90px;
+	min-height: 100px;
 }
 .next, .prev {
 	float: left;

@@ -21,7 +21,7 @@
 		<div class="right">
 			<a class="social facebook" href="http://www.facebook.com/henkham.tructuyen" target="_blank"><span></span></a>
 			<a class="social twitter" href="#" target="_blank"><span></span></a>
-			<a class="social googleplus" href="#" target="_blank"><span></span></a>
+			<a class="social googleplus" href="https://plus.google.com/+Dathenkhambenhtructuyen" target="_blank"><span></span></a>
 		</div>
 	</div>
 	</div>

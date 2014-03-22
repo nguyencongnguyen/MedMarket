@@ -23,4 +23,12 @@ public class CommonUtil {
 		return false;
 	}
 	
+	public static String genKeyword(String keyword) {
+		String[] keywords = keyword.split(" ");
+		StringBuffer result = new StringBuffer();
+		for (int i=0; i< keywords.length; i++ ) {
+			result.append(keywords[i] + ",");
+		}
+		return result.substring(0, result.length() - 1);
+	}
 }
