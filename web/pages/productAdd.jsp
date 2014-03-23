@@ -4,7 +4,7 @@
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/productAdd.js"></script>
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/ajaxfileupload.js"></script>
-<div class="content">
+<div class="content wrapperBox">
 <s:if test="%{uploadedImages != ''}">
 	<h2>Cập nhật sản phẩm</h2>
 </s:if>

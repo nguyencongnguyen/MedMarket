@@ -1,3 +1,6 @@
+.left-content #searchBox {
+	width: 100%;
+}
 .delUpload {
 	float: left;
 	margin-right: 10px;
@@ -40,7 +43,6 @@
 }
 .resultList ul li {
 	list-style: none;
-	width: 580px;
 	margin-bottom: 10px;
 	float: left;
 	background: url("../images/separator.gif") no-repeat scroll center bottom rgba(0, 0, 0, 0);
@@ -71,22 +73,23 @@
 .imageContainer {
 	width: 300px;
 	height: 300px;
-	border: 1px solid grey;
+	border: 1px solid #E7E7E7;
 	float: left;
 }
 
 .imageList {
-	width: 100px;
-	float: left;	
+	width: 100%;
+	float: left;
+	margin: 20px 0;	
 }
 .imageList ul {
-	margin: 0px 10px;
+	margin: 0px;
 	padding: 0;
 }
 .imageList ul li {
 	float: left;
 	list-style: none;
-	margin: 0px 0px 8px 0px;
+	margin: 0px 10px 0px 0px;
 }
 .imageList ul li img:hover {
 	cursor: pointer;
@@ -96,7 +99,11 @@
 }
 .detail {
 	float: left;
-	width: 450px;
+	width: 415px;
+	margin-left: 20px;
+}
+.detail h2 {
+	margin: 0;
 }
 .infoDetail {
 	clear: both;
@@ -137,7 +144,10 @@
 #catList ul li:last-child {
 	border-right: none;
 }
-
+#breadcrum {
+	float: left;
+	width: 100%;	
+}
 #breadcrum ul {
 	margin: 0;
 	padding: 0 0 30px 0;
@@ -157,12 +167,7 @@ li.arrow {
 }
 .productInfo {
 	float: left;
-	width: 920px;
-	background-color: #FFFFFF;
-    border-radius: 2px 2px 2px 2px;
-    box-shadow: 0 1px 1px 0 #AAAAAA;
     padding: 10px;
-    margin-bottom: 20px;
 }
 
 .productInfo label {

@@ -42,7 +42,7 @@ $(document).ready(function() {
 	});
 });
 </script>
-<div class="content left left-content">
+<div class="left left-content wrapperBox">
 <h2>Liên hệ</h2>
 
 <div class="error"><s:actionmessage /></div>

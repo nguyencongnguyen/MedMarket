@@ -9,18 +9,15 @@
 	<link rel="icon" href="<%= request.getContextPath() %>/images/favicon.png" type="image/png"/>
 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery.min.js"></script>
     <link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="<%= request.getContextPath() %>/css/right-ads.css" rel="stylesheet" type="text/css" />
   	<decorator:head />
  </head>
   <body>
   	<jsp:include page="../pages/include/top.jsp"></jsp:include>
     <div id="bannerContainer">    	    
 		<div class="banner">
-			<a href="<%=request.getContextPath() %>/home"><img src="<%= request.getContextPath() %>/images/logo.png" class="mainLogo" /></a>
-			<div style="float: right; background-color: #FFF; width: 300px; height: 150px; padding: 20px;">
-				<div style="color: #F5983B; font-size: 18px; font-weight: bold;">Chuyên trang rao vặt y khoa.</div>
-				<p style="font-size: 15px;">Chuyên trang rao vặt các loại sản phẩm, máy móc, dịch vụ y khoa với đa dạng các danh mục.</p>
-				<a href="/home/addProduct" class="button">Đăng tin miễn phí</a>
-			</div>
+			<a href="<%=request.getContextPath() %>/home">
+			<img src="<%= request.getContextPath() %>/images/logo.png" class="mainLogo" /></a>
 		</div>
 	</div>
 	<div id="aggregateHeaderWrapper">

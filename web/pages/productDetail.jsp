@@ -17,17 +17,10 @@
 </head>
 <body>
 <jsp:include page="include/breadcrum.jsp"></jsp:include>
-<div class="left left-content productInfo">
+<div class="left left-content">
+<div class="productInfo wrapperBox">
 	<div class="image">
-		<div class="imageContainer"><img id="productImage" src="" width="300" /></div>
-		<div class="imageList">
-			<ul>
-				<s:iterator value="images" status="image">
-					<li><img class="imageView" src='<s:property value="thumbnail"/>' alt='<s:property value="product.name"/>' width="70" />
-					<input class="imageUrl" type="hidden" value='<s:property value="url"/>'/></li>
-				</s:iterator>
-			</ul>
-		</div>
+		<div class="imageContainer"><img id="productImage" src="" style="max-width: 300px; max-height: 300px;" /></div>
 	</div>
 	<div class="detail">
 		<h2><s:property value="product.name"/></h2>	
@@ -59,20 +52,28 @@
 		<a class="button" href='/home/updateProduct?update=true&productId=<s:property value="product.productId"/>'>Cập nhật tin</a>&nbsp;&nbsp;
 		<a class="button" href='/home/updateProduct?update=false&productId=<s:property value="product.productId"/>'>Xóa tin</a>
 	</div>
-
+	<div class="imageList">
+		<ul>
+			<s:iterator value="images" status="image">
+				<li><img class="imageView" src='<s:property value="thumbnail"/>' alt='<s:property value="product.name"/>' height="50" />
+				<input class="imageUrl" type="hidden" value='<s:property value="url"/>'/></li>
+			</s:iterator>
+		</ul>
+	</div>
 	<div class="infoDetail">
 		<br/><label>Thông tin sản phẩm:</label><br/><br/>
 		<s:property value="product.description"/><br/>
 	</div>
 </div>
 <s:if test="%{similar.size() > 1}">
-	<div class="productInfo">
+	<div class="productInfo wrapperBox">
 	<div class="left" style="width: 100%; margin-top: 10px;"><label>Có thể bạn quan tâm:</label></div>
 	<div class='prev'><img src="<%= request.getContextPath() %>/images/carPrev-on.png" /></div>
 	<div id="similar">
 		<ul>
 			<s:iterator value="similar" status="product">
-				<li><a href='/<s:property value="friendlyUrl"/>'><img class="imageView" src='<s:property value="defaultThumnbail"/>' alt='<s:property value="name"/>' height="60" /></a><br/>
+				<li><a href='/<s:property value="friendlyUrl"/>'>
+				<img class="imageView" src='<s:property value="defaultThumnbail"/>' alt='<s:property value="name"/>' height="60" border="0"/></a><br/>
 				<s:property value="name"/><br/>
 				<s:if test="%{price > 0}">
 					<s:property value="price"/><br />
@@ -86,5 +87,9 @@
 	<div class='next'><img src="<%= request.getContextPath() %>/images/carouNext-on.png" /></div>
 	</div>
 </s:if>
+</div>
+
+<jsp:include page="include/right-ads.jsp"></jsp:include>
+
 </body>
 </html>

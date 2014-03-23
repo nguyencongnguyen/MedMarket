@@ -4,7 +4,7 @@
 <link href="<%= request.getContextPath() %>/css/product.css" rel="stylesheet" type="text/css" />
 <link href="<%= request.getContextPath() %>/css/right-ads.css" rel="stylesheet" type="text/css" />
 <jsp:include page="include/topCats.jsp"></jsp:include>
-<div class="left left-content">
+<div class="left left-content wrapperBox">
 	<div id="searchBox">
 		<div class="searchForm">
 			<s:form action="/home/search" method="get">
@@ -22,8 +22,10 @@
 			<s:if test="%{result.size() > 0}">
 				<ul>
 				<s:iterator value="result" status="product" id="aProduct">
+					<s:if test="#product.odd == true">
 					<li>
-						<div class="left">
+					</s:if>
+						<div class="left" style="margin-right: 10px;">
 							<a href='/<s:property value="friendlyUrl"/>' >
 								<img src='<s:property value="defaultThumnbail"/>' width="120" />
 							</a><br />
@@ -36,15 +38,17 @@
 	                            </s:else>
                             </div>
 						</div>
-						<div class="left" style="width: 400px; margin-bottom: 20px;">
+						<div class="left" style="width: 230px; margin-bottom: 20px;">
 							<a class="productName" href='/<s:property value="friendlyUrl"/>' >
 							<s:property value="name"/></a>
 							<br />
-							<span class="itemTitle">Loại sản phẩm: <s:property value="categoryName"/></span><br />
+							<span class="itemTitle">Loại: <s:property value="categoryName"/></span><br />
 							<div class="info"><s:property value="description"/></div><br />
 							<div><a href='/<s:property value="friendlyUrl"/>' class="button-org">Xem chi tiết</a></div>
 						</div>
+					<s:if test="#product.odd == false">
 					</li>
+					</s:if>
 				</s:iterator>
 				</ul>
 			</s:if>
@@ -85,5 +89,4 @@
 		</s:if>
 	</div>
 </div>
-
 <jsp:include page="include/right-ads.jsp"></jsp:include>

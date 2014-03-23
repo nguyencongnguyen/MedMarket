@@ -157,15 +157,15 @@ input[type=text].age {
 }
 .content {
 	float: left;
-	width: 100%;
+	width: 1080px;
 }
 #content {
-	width: 940px;
+	width: 1100px;
 	margin: 0 auto 15px auto;
 	min-height: 300px;
 }
 .topContent {
-	width: 940px;
+	width: 1100px;
 	margin: 0 auto;
 }
 .topContent ul {
@@ -188,11 +188,11 @@ input[type=text].age {
 #searchBox {
 	background: none repeat scroll 0 0 #DFECED;
 	height: 120px;
-	width: 600px;
+	width: 520px;
 	float: left;
 }
 #searchBox input#keyword {
-	width: 480px;
+	width: 400px;
 	height: 34px;
 }
 #searchBox .searchForm {
@@ -238,7 +238,8 @@ input[type=text].age {
 	width: 100%
 }
 #bannerContainer .banner {
-	width: 940px;
+	width: 1100px;
+	min-height: 130px;
 	margin: 0 auto;
 }
 #bannerContainer .banner img {
@@ -267,7 +268,7 @@ input[type=text].age {
 	margin: 0 10px;	
 }
 #footer-container > div {
-	width: 940px;
+	width: 1100px;
 	margin: 0 auto;
 	font-size: 12px;
 	color: #666666;
@@ -315,6 +316,7 @@ input[type=text].age {
 
 #aggregateHeaderWrapper {
     background-color: #129097;
+    box-shadow: 0 1px 1px 1px #E1E1E1;
     clear: both;
     margin-top: 5px;
     width: 100%;
@@ -333,7 +335,7 @@ input[type=text].age {
     font-family: arial;
 }
 #catList {
-	width: 940px;
+	width: 1100px;
 	height: 35px;
 	margin: 0 auto;
 	sbackground-color: #E0E0E0;
@@ -443,4 +445,15 @@ ul li a {
 }
 .lightGrey {
 	color: #9B9C89;
+}
+.left-content {
+	float: left;
+	width: 780px;
+}
+.wrapperBox {
+	background-color: #FFFFFF;
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 0 1px 1px 1px #E1E1E1;
+    padding: 10px;
+    margin-bottom: 20px;
 }
